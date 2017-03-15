@@ -1,47 +1,78 @@
 import { Component } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
-import { NavController, NavParams } from 'ionic-angular';
-
+import { NavController } from 'ionic-angular';
+import { CategoryProvider } from '../../providers/categoryProvider';
+import { EntryProvider } from '../../providers/entryProvider';
+import { Category } from '../../model/category';
+import { Entry } from '../../model/entry';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class Home {
+export class Home{
 
-  public doughnutChartLabels:string[] = ['Mão de Obra', 'Documentação', 'Materiais-Order Sales', 'Outros'];
-  public doughnutChartData:number[] = [350, 450, 100, 200];
+  //public doughnutChartLabels: Array<string>;
+  //public doughnutChartData:Array<number>;
+  public doughnutChartLabels:string[] = [];
+  public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
   
   selectedItem: any;
-  icons: string[];
-  titles: string[];
-  values: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  categories: Array<Category>;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['construct', 'paper', 'pricetags', 'medical', 'stats'];
+ constructor(public navCtrl: NavController, public categoryProvider: CategoryProvider, public entryProvider: EntryProvider) {
+    this.loadingCategoryList();
+    console.log(this.categories);
+        console.log(this.doughnutChartLabels);
+            console.log(this.doughnutChartData);
+ }
 
-    this.titles = ['Mão de Obra', 'Documentação', 'Materiais', 'Outros', 'Orçamento Previsto'];
-
-    this.items = [];
-    for (let i = 0; i < this.icons.length; i++) {
-      this.items.push({
-        title: this.titles[i],
-        note: '$' + i,
-        icon: this.icons[i]
-      });
-    }
+ private loadingCategoryList() {
+    this.categoryProvider.listCategories().subscribe(
+                       data => this.categoryProvider.fillCategoryList(data),
+                        err => console.log(err),
+                        () => {this.loadingTotalSpentByCategory();}
+                    );
   }
 
-  itemTapped(event, item) {
+   private loadingTotalSpentByCategory() {
+    this.categories = this.categoryProvider.getCategoryList();
+    for(let category of this.categories){
+      this.entryProvider.listEntriesByCategory(category.getId()).subscribe(
+                        data => this.entryProvider.fillEntryList(data),
+                          err => console.log(err),
+                          () => {
+                                 category.setTotal(this.sumTotalSpentByCategory(this.entryProvider.getEntryList())); 
+                                 console.log("category: " + category);
+                                 this.loadingChartInfo(category);
+                                }
+                      );
+      }
+    }
+
+  private loadingChartInfo(category: Category) {
+    this.doughnutChartLabels.push(category.getName());
+    this.doughnutChartData.push(category.getTotal())
+    console.log("labels: "+this.doughnutChartLabels);
+    console.log("data: "+this.doughnutChartData);
+  }
+
+  private sumTotalSpentByCategory(entries: Array<Entry>) {
+    let total = 0;
+    for(let entry of entries){
+        total += entry.getValue();
+      }
+
+    console.log("Total: " + total);
+    return total;
+  }
+
+  itemTapped(event, category) {
     // That's right, we're pushing to ourselves!
     this.navCtrl.push(Home, {
-      item: item
+      category: category
     });
   }
 
@@ -52,5 +83,29 @@ export class Home {
  
   public chartHovered(e:any):void {
     console.log(e);
+  }
+
+  getCategories() : Array<Category>{
+      return this.categories;
+  }
+
+  setCategories(categories: Array<Category>){
+      this.categories = categories;
+  }
+
+  getDoughnutChartLabels() : Array<string>{
+      return this.doughnutChartLabels;
+  }
+
+  setDoughnutChartLabels(doughnutChartLabels: Array<string>){
+      this.doughnutChartLabels = doughnutChartLabels;
+  }
+  
+  getDoughnutChartData() : Array<number>{
+      return this.doughnutChartData;
+  }
+
+  setDoughnutChartData(doughnutChartData: Array<number>){
+      this.doughnutChartData = doughnutChartData;
   }
 }

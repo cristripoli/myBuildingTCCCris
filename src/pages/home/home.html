@@ -15,6 +15,7 @@
     GASTOS
   </p>
 
+
   <div style="display: block">
     <canvas baseChart
                 [data]="doughnutChartData"
@@ -25,11 +26,11 @@
   </div>
 
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
+    <button ion-item *ngFor="let category of categories" (click)="itemTapped($event, category)">
+      <ion-icon [name]="category.icon" item-left></ion-icon>
+      {{category.name}}
       <div class="item-note" item-right>
-        {{item.note}}
+        R$ {{category.total}}
       </div>
       <ion-icon name="add" item-right></ion-icon>
     </button>

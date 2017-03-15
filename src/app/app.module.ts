@@ -7,6 +7,10 @@ import { Building } from '../pages/building/building';
 import { Settings } from '../pages/settings/settings';
 import { About } from '../pages/about/about';
 import { ChartsModule } from 'ng2-charts';
+import { CategoryProvider } from '../providers/categoryProvider';
+import { EntryProvider } from '../providers/entryProvider';
+import { CategoryService } from '../services/categoryService';
+import { EntryService } from '../services/entryService';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,11 @@ import { ChartsModule } from 'ng2-charts';
     Settings,
     About
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CategoryProvider,
+    CategoryService,
+    EntryProvider,
+    EntryService]
 })
 export class AppModule {}
