@@ -8,15 +8,14 @@ import { Entry } from '../../model/entry';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  inputs:['doughnutChartData']
 })
-export class Home{
-
-  //public doughnutChartLabels: Array<string>;
-  //public doughnutChartData:Array<number>;
+export class Home {
   public doughnutChartLabels:string[] = [];
   public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
+  public isDataAvailable = false;
   
   selectedItem: any;
   categories: Array<Category>;
@@ -33,11 +32,14 @@ export class Home{
     this.categoryProvider.listCategories().subscribe(
                        data => this.categoryProvider.fillCategoryList(data),
                         err => console.log(err),
-                        () => {this.loadingTotalSpentByCategory();}
+                        () => {
+                               this.loadingTotalSpentByCategory((callback) => {
+                                });
+                              }
                     );
   }
 
-   private loadingTotalSpentByCategory() {
+   private loadingTotalSpentByCategory(callback) {
     this.categories = this.categoryProvider.getCategoryList();
     for(let category of this.categories){
       this.entryProvider.listEntriesByCategory(category.getId()).subscribe(
@@ -50,6 +52,10 @@ export class Home{
                                 }
                       );
       }
+
+      setTimeout(() => {
+            return this.isDataAvailable = true;
+      });
     }
 
   private loadingChartInfo(category: Category) {

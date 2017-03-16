@@ -1,4 +1,5 @@
 <script src="../../../node_modules/chart.js/src/chart.js"></script>
+<script src="../../../node_modules/chart.js/dist/Chart.bundle.js"></script>
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -22,7 +23,9 @@
                 [labels]="doughnutChartLabels"
                 [chartType]="doughnutChartType"
                 (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+                (chartClick)="chartClicked($event)"
+                *ngIf="isDataAvailable">
+    </canvas>
   </div>
 
   <ion-list>
