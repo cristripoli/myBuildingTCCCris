@@ -5,6 +5,8 @@ import { CategoryProvider } from '../../providers/categoryProvider';
 import { EntryProvider } from '../../providers/entryProvider';
 import { Category } from '../../model/category';
 import { Entry } from '../../model/entry';
+import { EntryPage } from '../entry/entryPage';
+
 
 @Component({
   selector: 'page-home',
@@ -24,8 +26,6 @@ export class Home {
  constructor(public navCtrl: NavController, public categoryProvider: CategoryProvider, public entryProvider: EntryProvider) {
     this.loadingCategoryList();
     console.log(this.categories);
-        console.log(this.doughnutChartLabels);
-            console.log(this.doughnutChartData);
  }
 
  private loadingCategoryList() {
@@ -75,11 +75,18 @@ export class Home {
     return total;
   }
 
+  goToEntryPage(category: Category){
+         console.log("Category: " + category.getName());
+         this.navCtrl.push(EntryPage, {
+            id:  category.getId(),
+            name: category.getName(),
+            description: category.getDescription(),
+            icon: category.getIcon(),
+            total: category.getTotal()});
+  }
+
   itemTapped(event, category) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(Home, {
-      category: category
-    });
   }
 
   // events

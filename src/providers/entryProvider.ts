@@ -16,11 +16,13 @@ import { UtilService } from '../services/utilService';
 export class EntryProvider {
 
   private apiEntriesByCategoryUrl:string;
+  private apiEntryUrl:string;
   private entryList:Array<Entry>;
 
   constructor( private entryService: EntryService,
     public http: Http ) {
     this.apiEntriesByCategoryUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_GET_ENTRIES_BY_CATEGORY_URL);
+    this.apiEntryUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_URL);
     console.log('Hello Entry Provider');
   }
 
@@ -38,11 +40,32 @@ export class EntryProvider {
         console.log("entryList: " +  this.entryList);        
     }
 
+    public saveEntry(entry: Entry){
+            let headers = new Headers({ 'Content-Type':'application/json' });
+            let entryJson = this.entryService.convertEntryToJson(entry);
+            console.log('json: ' + entryJson);
+            let options = new RequestOptions({ headers: headers });
+            this.http.put( this.apiEntryUrl , entryJson, options).subscribe(
+                        data => this.verify(data),
+                        err => this.handleError(err)
+            );          
+    }
+
     getEntryList() : Array<Entry>{
         return this.entryList;
     }
     setEntryList(entryList: Array<Entry>){
         this.entryList = entryList;
+    }
+
+    private handleError (error: Response | any) {
+        console.log(error.json());
+    }
+
+    private verify(resultadoAlteracao){
+       console.log(resultadoAlteracao);
+       alert("Status alterado com sucesso!");
+
     }
 
 }

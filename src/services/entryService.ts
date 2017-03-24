@@ -18,4 +18,15 @@ export class EntryService {
 
        return entryList
     }
+
+    convertEntryToJson(entry: Entry){
+      let entryJson = JSON.stringify({
+        "description": entry.getDescription(), 
+        "date": entry.getDate(),
+        "value": entry.getValue(),
+        "id_item": entry.getIdItem()
+      });
+      return entryJson;
+    }
+    
   }

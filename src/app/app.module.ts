@@ -9,14 +9,18 @@ import { About } from '../pages/about/about';
 import { ChartsModule } from 'ng2-charts';
 import { CategoryProvider } from '../providers/categoryProvider';
 import { EntryProvider } from '../providers/entryProvider';
+import { ItemProvider } from '../providers/itemProvider';
 import { CategoryService } from '../services/categoryService';
 import { EntryService } from '../services/entryService';
+import { ItemService } from '../services/itemService';
+import { EntryPage } from '../pages/entry/entryPage';
 
 @NgModule({
   declarations: [
     MyApp,
     Home,
     Category,
+    EntryPage,
     Building,
     Settings,
     About
@@ -30,6 +34,7 @@ import { EntryService } from '../services/entryService';
     MyApp,
     Home,
     Category,
+    EntryPage,
     Building,
     Settings,
     About
@@ -39,6 +44,9 @@ import { EntryService } from '../services/entryService';
     CategoryProvider,
     CategoryService,
     EntryProvider,
-    EntryService]
+    EntryService,
+    ItemProvider,
+    ItemService
+    ]
 })
 export class AppModule {}
