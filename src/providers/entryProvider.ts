@@ -45,7 +45,7 @@ export class EntryProvider {
             let entryJson = this.entryService.convertEntryToJson(entry);
             console.log('json: ' + entryJson);
             let options = new RequestOptions({ headers: headers });
-            this.http.put( this.apiEntryUrl , entryJson, options).subscribe(
+            this.http.post( this.apiEntryUrl , entryJson, options).subscribe(
                         data => this.verify(data),
                         err => this.handleError(err)
             );          

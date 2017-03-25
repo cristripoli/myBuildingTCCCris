@@ -86,14 +86,6 @@ import { Category } from '../../model/category';
   }
 
   public setItems(items: Array<Item>){
-  this.items = items;
-}
-
-  public getSelectedItem(): Item{
-    return this.selectedItem;
-  }
-
-  public setSelectedItem(selectedItem: Item){
-  this.selectedItem = selectedItem;
+    this.items = items;
   }
 }

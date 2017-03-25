@@ -23,7 +23,7 @@
         <ion-item>
           <ion-label>Item</ion-label>
           <ion-select [(ngModel)]="entry.id_item" name="item">
-              <ion-option *ngFor="let item of items" value="{{item.id_item}}">{{item.name}}</ion-option>
+              <ion-option *ngFor="let item of items" [value]="item.id">{{item.name}}</ion-option>
           </ion-select>
         </ion-item>
         <ion-item>
