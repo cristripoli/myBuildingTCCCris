@@ -1,36 +1,31 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ItemProvider } from '../../providers/itemProvider';
-import { EntryProvider } from '../../providers/entryProvider';
-import { Entry } from '../../model/entry';
 import { Item } from '../../model/item';
 import { Category } from '../../model/category';
-import { HomePage } from '../home/homePage';
+import { EntryListPage } from '../entry/entryListPage'
+
 /*
-  Generated class for the Entry page.
+  Generated class for the ItemPage page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-entry',
-  templateUrl: 'EntryPage.html'
+  selector: 'page-item-page',
+  templateUrl: 'itemPage.html'
 })
-  export class EntryPage {
-  private entry: Entry;
-  private category: Category;
+export class ItemPage {
   private items: Array<Item>;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public entryProvider: EntryProvider) {
-    this.entry = new Entry(null, "", "", null, null);
-    this.category = new Category(null,"","","");
-    console.log("EntryPage constructor");
+  private category: Category;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider) {
+    console.log("ItemPage constructor");
 
     this.fillCateogoryParam(navParams);
     this.loadingItemList();
- }
+  }
 
- private fillCateogoryParam(navParams: NavParams){
+  private fillCateogoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
     console.log(navParams);
     this.category.setId(navParams.get('id'));
@@ -41,6 +36,7 @@ import { HomePage } from '../home/homePage';
 
     console.log("category: " + this.category);
   }
+
   private loadingItemList() {
     this.itemProvider.listItemsByCategory(this.category.getId()).subscribe(
                       data => this.itemProvider.fillItemList(data),
@@ -51,38 +47,13 @@ import { HomePage } from '../home/homePage';
                             }
                   );
   }
-
-  private saveEntry(entry: Entry){
-    this.entryProvider.saveEntry(entry);
-    this.back();
-  }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EntryPage');
+    console.log('ionViewDidLoad ItemPagePage');
   }
 
-  logForm() {
-    console.log(this.entry.getDescription);
-  }
-
-  back(){
-    this.navCtrl.push(HomePage);
-  }
-
-  public getEntry(): Entry{
-    return this.entry;
-  }
-
-  public setEntry(entry: Entry){
-    this.entry = entry;
-  }
-
-  public getCategory(): Category{
-    return this.category;
-  }
-
-  public setCategory(category: Category){
-    this.category = category;
+  showEntriesByItem(event, item) {
+    // That's right, we're pushing to ourselves!
+    this.navCtrl.push(EntryListPage, item);
   }
 
   public getItems(): Array<Item>{

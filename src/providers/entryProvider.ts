@@ -16,22 +16,32 @@ import { UtilService } from '../services/utilService';
 export class EntryProvider {
 
   private apiEntriesByCategoryUrl:string;
+  private apiEntriesByItemUrl:string;
   private apiEntryUrl:string;
   private entryList:Array<Entry>;
 
   constructor( private entryService: EntryService,
     public http: Http ) {
     this.apiEntriesByCategoryUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_GET_ENTRIES_BY_CATEGORY_URL);
+    this.apiEntriesByItemUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_GET_ENTRIES_BY_ITEM_URL);
     this.apiEntryUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_URL);
     console.log('Hello Entry Provider');
   }
 
   listEntriesByCategory(idCategory: number){
-        console.log("List entries by cateogry into provider method");
+        console.log("List entries by category into provider method");
          this.entryList = [];
             let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
             let options = new RequestOptions({ headers: headers });
             return this.http.get(this.apiEntriesByCategoryUrl + "/" + idCategory).map(res => res.json());
+    }
+
+   listEntriesByItem(idItem: number){
+        console.log("List entries by item into provider method");
+         this.entryList = [];
+            let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+            let options = new RequestOptions({ headers: headers });
+            return this.http.get(this.apiEntriesByItemUrl + "/" + idItem).map(res => res.json());
     }
 
     public fillEntryList(data: any){
@@ -62,9 +72,9 @@ export class EntryProvider {
         console.log(error.json());
     }
 
-    private verify(resultadoAlteracao){
-       console.log(resultadoAlteracao);
-       alert("Status alterado com sucesso!");
+    private verify(changeResult){
+       console.log(changeResult);
+       ;
 
     }
 

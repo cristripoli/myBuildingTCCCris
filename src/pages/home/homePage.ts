@@ -6,20 +6,19 @@ import { EntryProvider } from '../../providers/entryProvider';
 import { Category } from '../../model/category';
 import { Entry } from '../../model/entry';
 import { EntryPage } from '../entry/entryPage';
+import { ItemPage } from '../item/itemPage';
 
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
+  templateUrl: 'homePage.html',
   inputs:['doughnutChartData']
 })
-export class Home {
+export class HomePage {
   public doughnutChartLabels:string[] = [];
   public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
   public isDataAvailable = false;
-  
-  selectedItem: any;
   categories: Array<Category>;
   
 
@@ -39,7 +38,7 @@ export class Home {
                     );
   }
 
-   private loadingTotalSpentByCategory(callback) {
+    private loadingTotalSpentByCategory(callback) {
     this.categories = this.categoryProvider.getCategoryList();
     for(let category of this.categories){
       this.entryProvider.listEntriesByCategory(category.getId()).subscribe(
@@ -86,7 +85,7 @@ export class Home {
   }
 
   itemTapped(event, category) {
-    // That's right, we're pushing to ourselves!
+    this.navCtrl.push(ItemPage, category);
   }
 
   // events

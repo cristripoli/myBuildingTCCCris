@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { Home } from '../pages/home/home';
-import { Category } from '../pages/category/category';
+import { HomePage } from '../pages/home/homePage';
+import { CategoryPage } from '../pages/category/categoryPage';
 import { Building } from '../pages/building/building';
 import { Settings } from '../pages/settings/settings';
 import { About } from '../pages/about/about';
@@ -15,7 +15,7 @@ import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Home;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -24,8 +24,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: Home },
-      { title: 'Categorias', component: Category },
+      { title: 'Home', component: HomePage },
+      { title: 'Categorias', component: CategoryPage },
       { title: 'Obras', component: Building },
       { title: 'Configurações', component: Settings },
       { title: 'Sobre', component: About }

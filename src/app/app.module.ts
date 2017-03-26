@@ -1,8 +1,8 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Home } from '../pages/home/home';
-import { Category } from '../pages/category/category';
+import { HomePage } from '../pages/home/homePage';
+import { CategoryPage } from '../pages/category/categoryPage';
 import { Building } from '../pages/building/building';
 import { Settings } from '../pages/settings/settings';
 import { About } from '../pages/about/about';
@@ -14,13 +14,17 @@ import { CategoryService } from '../services/categoryService';
 import { EntryService } from '../services/entryService';
 import { ItemService } from '../services/itemService';
 import { EntryPage } from '../pages/entry/entryPage';
+import { ItemPage } from '../pages/item/itemPage';
+import { EntryListPage } from '../pages/entry/entryListPage';
 
 @NgModule({
   declarations: [
     MyApp,
-    Home,
-    Category,
+    HomePage,
+    CategoryPage,
     EntryPage,
+    ItemPage,
+    EntryListPage,
     Building,
     Settings,
     About
@@ -32,9 +36,11 @@ import { EntryPage } from '../pages/entry/entryPage';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Home,
-    Category,
+    HomePage,
+    CategoryPage,
     EntryPage,
+    ItemPage,
+    EntryListPage,
     Building,
     Settings,
     About
