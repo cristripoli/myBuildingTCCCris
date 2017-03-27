@@ -18,4 +18,13 @@ export class ItemService {
 
        return itemList
     }
+
+    public convertItemToJson(item: Item){
+      let itemJson = JSON.stringify({
+        "name": item.getName(),
+        "description": item.getDescription(), 
+        "id_category": item.getCategoryId()
+      });
+      return itemJson;
   }
+}

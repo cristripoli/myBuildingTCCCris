@@ -1,6 +1,7 @@
 export enum SettingsEnum{
     CATEGORY_URL = <any> 'http://localhost:3080/api/category',
     ENTRY_URL = <any> 'http://localhost:3080/api/entry',
+    ITEM_URL = <any> 'http://localhost:3080/api/item',
 	ENTRY_GET_ENTRIES_BY_CATEGORY_URL = <any> 'http://localhost:3080/api/entryByCategory',
     ENTRY_GET_ENTRIES_BY_ITEM_URL = <any> 'http://localhost:3080/api/entryByItem',
     ITEM_GET_ITEMS_BY_CATEGORY_URL = <any> 'http://localhost:3080/api/getItemsByCategory',

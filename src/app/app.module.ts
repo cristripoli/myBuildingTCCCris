@@ -14,7 +14,7 @@ import { CategoryService } from '../services/categoryService';
 import { EntryService } from '../services/entryService';
 import { ItemService } from '../services/itemService';
 import { EntryPage } from '../pages/entry/entryPage';
-import { ItemPage } from '../pages/item/itemPage';
+import { ItemListPage } from '../pages/item/itemListPage';
 import { EntryListPage } from '../pages/entry/entryListPage';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { EntryListPage } from '../pages/entry/entryListPage';
     HomePage,
     CategoryPage,
     EntryPage,
-    ItemPage,
+    ItemListPage,
     EntryListPage,
     Building,
     Settings,
@@ -39,7 +39,7 @@ import { EntryListPage } from '../pages/entry/entryListPage';
     HomePage,
     CategoryPage,
     EntryPage,
-    ItemPage,
+    ItemListPage,
     EntryListPage,
     Building,
     Settings,

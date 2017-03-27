@@ -16,10 +16,12 @@ import { Item } from '../model/item';
 export class ItemProvider {
 
   private apiItemsByCategoryUrl:string;
+  private apiItemUrl:string;
   private itemList:Array<Item>;
 
   constructor(public http: Http, private itemService: ItemService) {
     this.apiItemsByCategoryUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ITEM_GET_ITEMS_BY_CATEGORY_URL);
+    this.apiItemUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ITEM_GET_ITEMS_BY_CATEGORY_URL);
     console.log('Hello ItemProvider Provider');
   }
 
@@ -36,12 +38,33 @@ export class ItemProvider {
       this.itemList =  this.itemService.convertDataToItemList(data);
       console.log("itemList: " +  this.itemList);        
   }
+  
+  public saveItem(item: Item){
+      let headers = new Headers({ 'Content-Type':'application/json' });
+      let itemJson = this.itemService.convertItemToJson(item);
+      console.log('json: ' + itemJson);
+      let options = new RequestOptions({ headers: headers });
+      this.http.post( this.apiItemUrl , itemJson, options).subscribe(
+                  data => this.verify(data),
+                  err => this.handleError(err)
+      );          
+  }
 
   getItemList() : Array<Item>{
       return this.itemList;
   }
   setItemList(itemList: Array<Item>){
       this.itemList = itemList;
+  }
+
+  private handleError (error: Response | any) {
+      console.log(error.json());
+  }
+
+  private verify(changeResult){
+      console.log(changeResult);
+      ;
+
   }
 
 }

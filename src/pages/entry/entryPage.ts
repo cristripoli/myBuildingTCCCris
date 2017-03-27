@@ -23,14 +23,13 @@ import { HomePage } from '../home/homePage';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public entryProvider: EntryProvider) {
     this.entry = new Entry(null, "", "", null, null);
-    this.category = new Category(null,"","","");
     console.log("EntryPage constructor");
 
-    this.fillCateogoryParam(navParams);
+    this.fillCategoryParam(navParams);
     this.loadingItemList();
  }
 
- private fillCateogoryParam(navParams: NavParams){
+ private fillCategoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
     console.log(navParams);
     this.category.setId(navParams.get('id'));

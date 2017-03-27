@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CategoryProvider } from '../../providers/categoryProvider';
 import { Category } from '../../model/category';
-import { ItemPage } from '../item/itemPage';
 
 @Component({
   selector: 'page-category',

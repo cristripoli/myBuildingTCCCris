@@ -6,22 +6,37 @@
 -->
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-buttons start>
+      <button ion-button icon-only>
+        <ion-icon name="save" type="submit" block (click)="saveItem(item)"></ion-icon>
+      </button>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Items</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items" (click)="showEntriesByItem($event, item)">
-      {{item.name}}
-    </ion-item>
-  </ion-list>
-
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+    <ion-card>
+      <form>
+        <ion-item>
+          <ion-label>Category</ion-label>
+          <ion-select [(ngModel)]="item.category_id" name="item">
+              <ion-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Name:</ion-label>
+            <ion-input type="text" [(ngModel)]="item.name" name="name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Descrição:</ion-label>
+            <ion-input type="text" [(ngModel)]="item.description" name="description"></ion-input>
+        </ion-item>
+        <button ion-button type="submit" block (click)="saveItem(item)">Salvar Lançamento</button>
+      </form>
+    </ion-card>
 </ion-content>
 

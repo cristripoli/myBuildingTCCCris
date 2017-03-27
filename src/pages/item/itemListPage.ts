@@ -4,6 +4,7 @@ import { ItemProvider } from '../../providers/itemProvider';
 import { Item } from '../../model/item';
 import { Category } from '../../model/category';
 import { EntryListPage } from '../entry/entryListPage'
+import { ItemPage } from '../item/itemPage'
 
 /*
   Generated class for the ItemPage page.
@@ -15,17 +16,17 @@ import { EntryListPage } from '../entry/entryListPage'
   selector: 'page-item-page',
   templateUrl: 'itemListPage.html'
 })
-export class ItemPage {
-  private item: Item;
+export class ItemListPage {
+  private items: Array<Item>;
   private category: Category;
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider) {
     console.log("ItemPage constructor");
-    this.item = new Item(null,"","",null);
 
-    this.fillCategoryParam(navParams);
+    this.fillCateogoryParam(navParams);
+    this.loadingItemList();
   }
 
-  private fillCategoryParam(navParams: NavParams){
+  private fillCateogoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
     console.log(navParams);
     this.category.setId(navParams.get('id'));
@@ -37,16 +38,34 @@ export class ItemPage {
     console.log("category: " + this.category);
   }
 
+  private loadingItemList() {
+    this.itemProvider.listItemsByCategory(this.category.getId()).subscribe(
+                      data => this.itemProvider.fillItemList(data),
+                      err => console.log(err),
+                      () => {
+                              this.setItems(this.itemProvider.getItemList()); 
+                              console.log(this.items);
+                            }
+                  );
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemPagePage');
   }
 
-  private saveItem(item: Item){
-    this.itemProvider.saveItem(item);
-    this.back();
+  showEntriesByItem(event, item) {
+    // That's right, we're pushing to ourselves!
+    this.navCtrl.push(EntryListPage, item);
+  }
+  
+  goToItemPage(){
+    this.navCtrl.push(ItemPage);
   }
 
-  back(){
-    this.navCtrl.push(ItemListPage);
+  public getItems(): Array<Item>{
+    return this.items;
+  }
+
+  public setItems(items: Array<Item>){
+    this.items = items;
   }
 }

@@ -6,7 +6,7 @@ import { EntryProvider } from '../../providers/entryProvider';
 import { Category } from '../../model/category';
 import { Entry } from '../../model/entry';
 import { EntryPage } from '../entry/entryPage';
-import { ItemPage } from '../item/itemPage';
+import { ItemListPage } from '../item/itemListPage';
 
 
 @Component({
@@ -85,7 +85,7 @@ export class HomePage {
   }
 
   itemTapped(event, category) {
-    this.navCtrl.push(ItemPage, category);
+    this.navCtrl.push(ItemListPage, category);
   }
 
   // events
