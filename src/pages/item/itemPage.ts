@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ItemProvider } from '../../providers/itemProvider';
 import { Item } from '../../model/item';
 import { Category } from '../../model/category';
-import { EntryListPage } from '../entry/entryListPage'
+import { ItemListPage } from '../item/itemListPage'
 
 /*
   Generated class for the ItemPage page.
@@ -13,7 +13,7 @@ import { EntryListPage } from '../entry/entryListPage'
 */
 @Component({
   selector: 'page-item-page',
-  templateUrl: 'itemListPage.html'
+  templateUrl: 'itemPage.html'
 })
 export class ItemPage {
   private item: Item;
@@ -28,12 +28,8 @@ export class ItemPage {
   private fillCategoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
     console.log(navParams);
-    this.category.setId(navParams.get('id'));
-    this.category.setName(navParams.get('name'));
-    this.category.setDescription(navParams.get('description'));
-    this.category.setIcon(navParams.get('icon'));
-    this.category.setTotal(navParams.get('total'));
-
+    this.category = navParams.data;
+    this.item.setCategoryId(this.category.getId());
     console.log("category: " + this.category);
   }
 
@@ -48,5 +44,13 @@ export class ItemPage {
 
   back(){
     this.navCtrl.push(ItemListPage);
+  }
+
+  public getItem(): Item{
+    return this.item;
+  }
+
+  public setItem(item: Item){
+    this.item = item;
   }
 }

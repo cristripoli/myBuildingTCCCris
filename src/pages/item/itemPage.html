@@ -23,9 +23,7 @@
       <form>
         <ion-item>
           <ion-label>Category</ion-label>
-          <ion-select [(ngModel)]="item.category_id" name="item">
-              <ion-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</ion-option>
-          </ion-select>
+          <ion-input type="text" [(ngModel)]="item.category_id" name="category" value="category.name"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Name:</ion-label>

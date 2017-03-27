@@ -29,11 +29,7 @@ export class ItemListPage {
   private fillCateogoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
     console.log(navParams);
-    this.category.setId(navParams.get('id'));
-    this.category.setName(navParams.get('name'));
-    this.category.setDescription(navParams.get('description'));
-    this.category.setIcon(navParams.get('icon'));
-    this.category.setTotal(navParams.get('total'));
+    this.category = navParams.data;
 
     console.log("category: " + this.category);
   }
@@ -58,7 +54,7 @@ export class ItemListPage {
   }
   
   goToItemPage(){
-    this.navCtrl.push(ItemPage);
+    this.navCtrl.push(ItemPage, this.category);
   }
 
   public getItems(): Array<Item>{

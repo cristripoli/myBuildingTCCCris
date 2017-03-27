@@ -29,7 +29,7 @@
   </div>
 
   <ion-list>
-    <ion-item *ngFor="let category of categories" (click)="itemTapped($event, category)">
+    <ion-item *ngFor="let category of categories" (click)="goToItemList($event, category)">
       <ion-icon [name]="category.icon" item-left></ion-icon>
       {{category.name}}
       <div class="item-note" item-right>

@@ -32,10 +32,7 @@ import { HomePage } from '../home/homePage';
  private fillItemParam(navParams: NavParams){
     this.item = new Item(null,"","",null);
     console.log(navParams);
-    this.item.setId(navParams.get('id'));
-    this.item.setName(navParams.get('name'));
-    this.item.setDescription(navParams.get('description'));
-    this.item.setCategoryId(navParams.get('categoryId'));
+    this.item = navParams.data;
     console.log("item: " + this.item);
   }
 

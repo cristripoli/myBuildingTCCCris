@@ -84,7 +84,7 @@ export class HomePage {
             total: category.getTotal()});
   }
 
-  itemTapped(event, category) {
+  goToItemList(event, category) {
     this.navCtrl.push(ItemListPage, category);
   }
 

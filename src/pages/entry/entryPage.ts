@@ -32,12 +32,7 @@ import { HomePage } from '../home/homePage';
  private fillCategoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
     console.log(navParams);
-    this.category.setId(navParams.get('id'));
-    this.category.setName(navParams.get('name'));
-    this.category.setDescription(navParams.get('description'));
-    this.category.setIcon(navParams.get('icon'));
-    this.category.setTotal(navParams.get('total'));
-
+    this.category = navParams.data;
     console.log("category: " + this.category);
   }
   private loadingItemList() {
