@@ -21,7 +21,7 @@ export class ItemProvider {
 
   constructor(public http: Http, private itemService: ItemService) {
     this.apiItemsByCategoryUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ITEM_GET_ITEMS_BY_CATEGORY_URL);
-    this.apiItemUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ITEM_GET_ITEMS_BY_CATEGORY_URL);
+    this.apiItemUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ITEM_URL);
     console.log('Hello ItemProvider Provider');
   }
 

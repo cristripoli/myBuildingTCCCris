@@ -43,7 +43,7 @@ export class ItemPage {
   }
 
   back(){
-    this.navCtrl.push(ItemListPage);
+    this.navCtrl.push(ItemListPage, this.category);
   }
 
   public getItem(): Item{

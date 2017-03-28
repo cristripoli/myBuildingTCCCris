@@ -33,6 +33,7 @@ import { HomePage } from '../home/homePage';
     this.category = new Category(null,"","","");
     console.log(navParams);
     this.category = navParams.data;
+
     console.log("category: " + this.category);
   }
   private loadingItemList() {

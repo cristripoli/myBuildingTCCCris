@@ -76,12 +76,7 @@ export class HomePage {
 
   goToEntryPage(category: Category){
          console.log("Category: " + category.getName());
-         this.navCtrl.push(EntryPage, {
-            id:  category.getId(),
-            name: category.getName(),
-            description: category.getDescription(),
-            icon: category.getIcon(),
-            total: category.getTotal()});
+         this.navCtrl.push(EntryPage, category);
   }
 
   goToItemList(event, category) {
