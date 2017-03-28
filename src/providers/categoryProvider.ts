@@ -17,6 +17,7 @@ export class CategoryProvider{
 
   private apiCategoryUrl:string;
   private categoryList:Array<Category>;
+  private category: Category;
 
   constructor(private categoryService: CategoryService,
     public http: Http) {
@@ -38,11 +39,30 @@ export class CategoryProvider{
         console.log("categoryList: " +  this.categoryList);        
     }
 
+    public getCategoryById(id: number){
+         console.log("Get category by Id");
+         this.category = new Category(null,"","","");
+            let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+            let options = new RequestOptions({ headers: headers });
+            return this.http.get(this.apiCategoryUrl + "/" + id ).map(res => res.json());       
+    }
+
+    public fillCategory(data: any){
+        console.log("data: " + data);
+        this.category =  this.categoryService.convertDataToCategory(data);
+        console.log("category: " +  this.category);        
+    }
+
     getCategoryList() : Array<Category>{
         return this.categoryList;
     }
     setCategoryList(categoryList: Array<Category>){
         this.categoryList = categoryList;
     }
-
+    getCategory() : Category{
+        return this.category;
+    }
+    setCategory(category: Category){
+        this.category= category;
+    }
 }

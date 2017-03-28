@@ -18,4 +18,12 @@ export class CategoryService {
 
        return categoryList
     }
+
+    convertDataToCategory(data:any):Category {
+       let category:Category;
+       category = new Category(data[0].id,data[0].name,data[0].description,data[0].icon);
+       console.log("Object category get: " + category.getName());
+
+       return category
+    }
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ItemProvider } from '../../providers/itemProvider';
 import { EntryProvider } from '../../providers/entryProvider';
+import { CategoryProvider } from '../../providers/categoryProvider';
 import { Entry } from '../../model/entry';
 import { Item } from '../../model/item';
 import { Category } from '../../model/category';
@@ -14,28 +15,43 @@ import { HomePage } from '../home/homePage';
 */
 @Component({
   selector: 'page-entry',
-  templateUrl: 'EntryPage.html'
+  templateUrl: 'entryPage.html'
 })
   export class EntryPage {
   private entry: Entry;
+  private item: Item;
   private category: Category;
   private items: Array<Item>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public entryProvider: EntryProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public entryProvider: EntryProvider, public categoryProvider: CategoryProvider,) {
     this.entry = new Entry(null, "", "", null, null);
     console.log("EntryPage constructor");
+    console.log(navParams);
 
-    this.fillCategoryParam(navParams);
-    this.loadingItemList();
+    if(navParams.get('item') != null && navParams.get('item') != 'undefined'){
+      this.fillItemParam(navParams);
+    }
+
+    if(navParams.get('category') == null || navParams.get('category') == 'undefined'){
+      this.loadingCategory();
+    }else{
+      this.fillCategoryParam(navParams);
+      this.loadingItemList();
+    }   
  }
 
  private fillCategoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
-    console.log(navParams);
-    this.category = navParams.data;
-
+    this.category = navParams.get('category');
     console.log("category: " + this.category);
   }
+
+   private fillItemParam(navParams: NavParams){
+    this.item = new Item(null,"","",null);
+    this.item = navParams.get('item');
+    console.log("item: " + this.item);
+  }
+
   private loadingItemList() {
     this.itemProvider.listItemsByCategory(this.category.getId()).subscribe(
                       data => this.itemProvider.fillItemList(data),
@@ -43,6 +59,18 @@ import { HomePage } from '../home/homePage';
                       () => {
                               this.setItems(this.itemProvider.getItemList()); 
                               console.log(this.items);
+                            }
+                  );
+  }
+
+  private loadingCategory(){
+    this.categoryProvider.getCategoryById(this.item.getId()).subscribe(
+                      data => this.categoryProvider.fillCategory(data),
+                      err => console.log(err),
+                      () => {
+                              this.setCategory(this.categoryProvider.getCategory()); 
+                              console.log(this.category);
+                              this.loadingItemList();
                             }
                   );
   }

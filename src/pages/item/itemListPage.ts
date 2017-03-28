@@ -22,11 +22,11 @@ export class ItemListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider) {
     console.log("ItemPage constructor");
 
-    this.fillCateogoryParam(navParams);
+    this.fillCategoryParam(navParams);
     this.loadingItemList();
   }
 
-  private fillCateogoryParam(navParams: NavParams){
+  private fillCategoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
     console.log(navParams);
     this.category = navParams.data;

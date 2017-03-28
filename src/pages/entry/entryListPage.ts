@@ -5,6 +5,8 @@ import { Entry } from '../../model/entry';
 import { Item } from '../../model/item';
 import { Category } from '../../model/category';
 import { HomePage } from '../home/homePage';
+import { EntryPage } from '../entry/entryPage';
+
 /*
   Generated class for the Entry page.
 
@@ -13,7 +15,7 @@ import { HomePage } from '../home/homePage';
 */
 @Component({
   selector: 'page-entry',
-  templateUrl: 'EntryListPage.html'
+  templateUrl: 'entryListPage.html'
 })
   export class EntryListPage {
   private entries: Array<Entry>;
@@ -50,6 +52,10 @@ import { HomePage } from '../home/homePage';
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EntryPage');
+  }
+
+  goToEntryPage(){
+    this.navCtrl.push(EntryPage, {"item": this.item});
   }
 
   back(){

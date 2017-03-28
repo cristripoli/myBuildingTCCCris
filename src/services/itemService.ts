@@ -11,7 +11,7 @@ export class ItemService {
      
        for (let json of data) {
          console.log("json: " + json);
-         item = new Item(json.id,json.name,json.description,json.category_id);
+         item = new Item(json.id,json.name,json.description,json.id_category);
          console.log("Object item get: " + item.getName());
          itemList.push(item);
        }
@@ -23,7 +23,7 @@ export class ItemService {
       let itemJson = JSON.stringify({
         "name": item.getName(),
         "description": item.getDescription(), 
-        "id_category": item.getCategoryId()
+        "category_id": item.getCategoryId()
       });
       return itemJson;
   }
