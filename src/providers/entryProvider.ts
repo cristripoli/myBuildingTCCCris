@@ -51,14 +51,14 @@ export class EntryProvider {
     }
 
     public saveEntry(entry: Entry){
-            let headers = new Headers({ 'Content-Type':'application/json' });
-            let entryJson = this.entryService.convertEntryToJson(entry);
-            console.log('json: ' + entryJson);
-            let options = new RequestOptions({ headers: headers });
-            this.http.post( this.apiEntryUrl , entryJson, options).subscribe(
-                        data => this.verify(data),
-                        err => this.handleError(err)
-            );          
+        let headers = new Headers({ 'Content-Type':'application/json' });
+        let entryJson = this.entryService.convertEntryToJson(entry);
+        console.log('json: ' + entryJson);
+        let options = new RequestOptions({ headers: headers });
+        this.http.post( this.apiEntryUrl , entryJson, options).subscribe(
+                    data => this.verify(data),
+                    err => this.handleError(err)
+        );          
     }
 
     getEntryList() : Array<Entry>{

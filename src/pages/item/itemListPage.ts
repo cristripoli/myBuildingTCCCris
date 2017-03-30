@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { ItemProvider } from '../../providers/itemProvider';
 import { Item } from '../../model/item';
 import { Category } from '../../model/category';
@@ -19,7 +19,7 @@ import { ItemPage } from '../item/itemPage'
 export class ItemListPage {
   private items: Array<Item>;
   private category: Category;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public events: Events) {
     console.log("ItemPage constructor");
 
     this.fillCategoryParam(navParams);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { ItemProvider } from '../../providers/itemProvider';
 import { EntryProvider } from '../../providers/entryProvider';
 import { CategoryProvider } from '../../providers/categoryProvider';
@@ -24,7 +24,7 @@ import { HomePage } from '../home/homePage';
   private items: Array<Item>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public entryProvider: EntryProvider, public categoryProvider: CategoryProvider,) {
-    this.entry = new Entry(null, "", "", null, null);
+    this.entry = new Entry(null, "", "", null, null,null);
     console.log("EntryPage constructor");
     console.log(navParams);
 

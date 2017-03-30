@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { ItemProvider } from '../../providers/itemProvider';
 import { Item } from '../../model/item';
 import { Category } from '../../model/category';
@@ -18,7 +18,7 @@ import { ItemListPage } from '../item/itemListPage'
 export class ItemPage {
   private item: Item;
   private category: Category;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public events: Events) {
     console.log("ItemPage constructor");
     this.item = new Item(null,"","",null);
 
@@ -44,6 +44,10 @@ export class ItemPage {
 
   back(){
     this.navCtrl.push(ItemListPage, this.category);
+  }
+
+  test(){
+     console.log('testeeeeeeee');
   }
 
   public getItem(): Item{

@@ -23,7 +23,7 @@ export class ItemService {
       let itemJson = JSON.stringify({
         "name": item.getName(),
         "description": item.getDescription(), 
-        "category_id": item.getCategoryId()
+        "id_category": item.getCategoryId()
       });
       return itemJson;
   }

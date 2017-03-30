@@ -3,13 +3,13 @@ export class Item{
     private id: number;
     private name: string;
     private description: string;
-    private category_id: number;
+    private id_category: number;
 
     constructor(id:number, name:string, description: string, category_id: number){
       this.id = id;
       this.name = name;
       this.description = description;
-      this.category_id = category_id;
+      this.id_category = category_id;
     }
     
     public getId():number{
@@ -22,7 +22,7 @@ export class Item{
         return this.description;
     }
     public getCategoryId():number{
-        return this.category_id;
+        return this.id_category;
     }
     public setId(id: number){
         this.id = id;
@@ -34,6 +34,6 @@ export class Item{
         this.description = description;
     }
     public setCategoryId(category_id: number){
-        this.category_id = category_id;
+        this.id_category = category_id;
     }
 }

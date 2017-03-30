@@ -5,13 +5,16 @@ export class Entry{
     private date: string;
     private value: number;
     private id_item: number;
+    private paid: boolean;
+    private total: number;
 
-    constructor(id:number, description: string, date: string, value:number, id_item: number){
+    constructor(id:number, description: string, date: string, value:number, id_item: number, paid: boolean){
       this.id = id;
       this.description = description;
       this.date = date;
       this.value = value;
       this.id_item = id_item;
+      this.paid = paid;
     }
     
     public getId():number{
@@ -29,6 +32,12 @@ export class Entry{
     public getIdItem():number{
         return this.id_item;
     }
+    public isPaid():boolean{
+        return this.paid;
+    }
+    public getTotal():number{
+        return this.total;
+    }
     public setId(id: number){
         this.id = id;
     }
@@ -43,5 +52,11 @@ export class Entry{
     }
     public setIdItem(id_item: number){
         this.id_item = id_item;
+    }
+    public setPaid(paid: boolean){
+        this.paid = paid;
+    }
+    public setTotal(total: number){
+        this.total = total;
     }
 }

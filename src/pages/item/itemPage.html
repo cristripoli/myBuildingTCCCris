@@ -7,8 +7,8 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
-      <button ion-button icon-only>
-        <ion-icon name="save" type="submit" block (click)="saveItem(item)"></ion-icon>
+      <button ion-button icon-only (click)="saveItem(item)">
+        <ion-icon name="checkmark" ></ion-icon>
       </button>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -33,7 +33,6 @@
             <ion-label floating>Descrição:</ion-label>
             <ion-input type="text" [(ngModel)]="item.description" name="description"></ion-input>
         </ion-item>
-        <button ion-button type="submit" block (click)="saveItem(item)">Salvar Lançamento</button>
       </form>
     </ion-card>
 </ion-content>

@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-buttons start>
       <button ion-button icon-only>
-        <ion-icon name="save"></ion-icon>
+        <ion-icon name="checkmark"></ion-icon>
       </button>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -45,6 +45,10 @@
         <ion-item>
             <ion-label>Valor:</ion-label>
             <ion-input type="number" [(ngModel)]="entry.value" name="value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Pago:</ion-label>
+            <ion-checkbox [(ngModel)]="entry.paid" name="isPaid"></ion-checkbox>
         </ion-item>
         <button ion-button type="submit" block (click)="saveEntry(entry)">Salvar Lançamento</button>
       </form>
