@@ -22,9 +22,10 @@ import { HomePage } from '../home/homePage';
   private item: Item;
   private category: Category;
   private items: Array<Item>;
+  private total: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public entryProvider: EntryProvider, public categoryProvider: CategoryProvider,) {
-    this.entry = new Entry(null, "", "", null, null,null);
+    this.entry = new Entry(null, "", "", null, null,null,1,0);
     console.log("EntryPage constructor");
     console.log(navParams);
 
@@ -78,6 +79,10 @@ import { HomePage } from '../home/homePage';
   private saveEntry(entry: Entry){
     this.entryProvider.saveEntry(entry);
     this.back();
+  }
+
+  onKey(event: any) { // without type info
+    this.entry.setTotal(this.getEntry().getQuantity() * this.getEntry().getValue());
   }
 
   ionViewDidLoad() {

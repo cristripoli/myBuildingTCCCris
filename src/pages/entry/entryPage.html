@@ -26,7 +26,7 @@
       <form>
         <ion-item>
             <ion-label floating>Category:</ion-label>
-            <ion-input type="text" [(ngModel)]="category.id" value="category.name" disabled="true" name="category"></ion-input>
+            <ion-input type="text" [(ngModel)]="category.id" [value]="category.name" disabled="true" name="category"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Item</ion-label>
@@ -43,9 +43,17 @@
             <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="entry.date" name="date"></ion-datetime>
         </ion-item>
         <ion-item>
-            <ion-label>Valor:</ion-label>
-            <ion-input type="number" [(ngModel)]="entry.value" name="value"></ion-input>
+            <ion-label floating >Qtd/Peça:</ion-label>
+            <ion-input type="number" (keyup)="onKey($event)" [(ngModel)]="entry.quantity" name="quantity" [value]="entry.quantity"></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label floating >Valor:</ion-label>
+            <ion-input type="number" (keyup)="onKey($event)" [(ngModel)]="entry.value" name="value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Total: R$ {{entry.total}}</ion-label>
+        </ion-item>
+        
         <ion-item>
             <ion-label>Pago:</ion-label>
             <ion-checkbox [(ngModel)]="entry.paid" name="isPaid"></ion-checkbox>
