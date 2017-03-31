@@ -16,6 +16,16 @@
     GASTOS
   </p>
 
+  <ion-card *ngIf="showDetailsFinacial">
+    <ion-label>Estimado: R$ {{building.estimated_value}}</ion-label>
+    <ion-label>Gasto: R$ {{totalSpent}}</ion-label>
+    <ion-label>Saldo: R$ {{balance}}</ion-label>
+  </ion-card>
+
+  <div class="item-note" item-right>
+    <progress-bar [progress]="loadProgress"></progress-bar>
+    <ion-icon name="more" item-right (click)="showDetails()"></ion-icon>
+  </div>
 
   <div style="display: block">
     <canvas baseChart
@@ -46,3 +56,14 @@
   </ion-list>
 
 </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <p>Ash, Misty, Brock</p>
+      <ion-buttons end>
+        <button ion-button icon-right color="royal">
+          Send
+          <ion-icon name="send"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>

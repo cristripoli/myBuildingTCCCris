@@ -10,13 +10,17 @@ import { ChartsModule } from 'ng2-charts';
 import { CategoryProvider } from '../providers/categoryProvider';
 import { EntryProvider } from '../providers/entryProvider';
 import { ItemProvider } from '../providers/itemProvider';
+import { BuildingProvider } from '../providers/buildingProvider';
 import { CategoryService } from '../services/categoryService';
+import { BuildingService } from '../services/buildingService';
 import { EntryService } from '../services/entryService';
 import { ItemService } from '../services/itemService';
+import { BuildingCalcService } from '../services/buildingCalcService';
 import { EntryPage } from '../pages/entry/entryPage';
 import { ItemPage } from '../pages/item/itemPage';
 import { ItemListPage } from '../pages/item/itemListPage';
 import { EntryListPage } from '../pages/entry/entryListPage';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import { EntryListPage } from '../pages/entry/entryListPage';
     EntryListPage,
     Building,
     Settings,
-    About
+    About,
+    ProgressBarComponent
   ],
   imports: [
     ChartsModule,
@@ -55,7 +60,10 @@ import { EntryListPage } from '../pages/entry/entryListPage';
     EntryProvider,
     EntryService,
     ItemProvider,
-    ItemService
+    ItemService,
+    BuildingProvider,
+    BuildingService,
+    BuildingCalcService
     ]
 })
 export class AppModule {}

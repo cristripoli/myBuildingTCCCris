@@ -3,11 +3,13 @@ import { ChartsModule } from 'ng2-charts';
 import { NavController } from 'ionic-angular';
 import { CategoryProvider } from '../../providers/categoryProvider';
 import { EntryProvider } from '../../providers/entryProvider';
+import { BuildingProvider } from '../../providers/buildingProvider';
+import { BuildingCalcService } from '../../services/buildingCalcService';
 import { Category } from '../../model/category';
 import { Entry } from '../../model/entry';
+import { Building } from '../../model/building';
 import { EntryPage } from '../entry/entryPage';
 import { ItemListPage } from '../item/itemListPage';
-
 
 @Component({
   selector: 'page-home',
@@ -19,14 +21,31 @@ export class HomePage {
   public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
   public isDataAvailable = false;
-  categories: Array<Category>;
+  public showDetailsFinacial = false;
+  public loadProgress = 0;
+  public categories: Array<Category>;
+  public building: Building;
+  public totalSpent: number = 0;
+  public balance: number = 0;
   
 
- constructor(public navCtrl: NavController, public categoryProvider: CategoryProvider, public entryProvider: EntryProvider) {
+ constructor(public navCtrl: NavController, public categoryProvider: CategoryProvider, public entryProvider: EntryProvider, 
+             public buildingProvider: BuildingProvider, public calcService: BuildingCalcService) {
+    this.loadingBuilding();
     this.loadingCategoryList();
     console.log(this.categories);
  }
 
+ private loadingBuilding(){
+    this.buildingProvider.getBuildingById(1).subscribe(
+            data => this.buildingProvider.fillBuilding(data),
+            err => console.log(err),
+            () => {
+                   this.building = this.buildingProvider.getBuilding();
+                  }
+        );
+ }
+ 
  private loadingCategoryList() {
     this.categoryProvider.listCategories().subscribe(
                        data => this.categoryProvider.fillCategoryList(data),
@@ -38,40 +57,33 @@ export class HomePage {
                     );
   }
 
-    private loadingTotalSpentByCategory(callback) {
+  private loadingTotalSpentByCategory(callback) {
     this.categories = this.categoryProvider.getCategoryList();
     for(let category of this.categories){
       this.entryProvider.listEntriesByCategory(category.getId()).subscribe(
                         data => this.entryProvider.fillEntryList(data),
                           err => console.log(err),
                           () => {
-                                 category.setTotal(this.sumTotalSpentByCategory(this.entryProvider.getEntryList())); 
-                                 console.log("category: " + category);
-                                 this.loadingChartInfo(category);
+                                  category.setTotal(this.calcService.sumTotalSpentByCategory(this.entryProvider.getEntryList())); 
+                                  console.log("category: " + category);
+                                  this.loadingChartInfo(category);
                                 }
                       );
-      }
-
-      setTimeout(() => {
-            return this.isDataAvailable = true;
-      });
     }
+
+    setTimeout(() => {
+       this.setLoadProgress(this.calcService.calculateEstimatedValueProgress(this.building.getEstimatedValue()));
+       this.totalSpent = this.calcService.getTotalSpent();
+       this.balance = this.building.getEstimatedValue() - this.totalSpent;
+       return this.isDataAvailable = true;
+    });
+  }
 
   private loadingChartInfo(category: Category) {
     this.doughnutChartLabels.push(category.getName());
     this.doughnutChartData.push(category.getTotal())
     console.log("labels: "+this.doughnutChartLabels);
     console.log("data: "+this.doughnutChartData);
-  }
-
-  private sumTotalSpentByCategory(entries: Array<Entry>) {
-    let total = 0;
-    for(let entry of entries){
-        total += entry.getValue();
-      }
-
-    console.log("Total: " + total);
-    return total;
   }
 
   goToEntryPage(category: Category){
@@ -91,6 +103,16 @@ export class HomePage {
   public chartHovered(e:any):void {
     console.log(e);
   }
+  public showDetails(){
+    this.showDetailsFinacial = !this.showDetailsFinacial;
+  }
+  getLoadProgress() : number{
+      return this.loadProgress;
+  }
+
+  setLoadProgress(loadProgress: number){
+      this.loadProgress = loadProgress;
+  }
 
   getCategories() : Array<Category>{
       return this.categories;
@@ -99,6 +121,7 @@ export class HomePage {
   setCategories(categories: Array<Category>){
       this.categories = categories;
   }
+
 
   getDoughnutChartLabels() : Array<string>{
       return this.doughnutChartLabels;
