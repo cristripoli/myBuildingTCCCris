@@ -17,6 +17,7 @@ export class EntryProvider {
 
   private apiEntriesByCategoryUrl:string;
   private apiEntriesByItemUrl:string;
+  private apiEntriesByMonth:string;
   private apiEntryUrl:string;
   private entryList:Array<Entry>;
 
@@ -24,6 +25,7 @@ export class EntryProvider {
     public http: Http ) {
     this.apiEntriesByCategoryUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_GET_ENTRIES_BY_CATEGORY_URL);
     this.apiEntriesByItemUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_GET_ENTRIES_BY_ITEM_URL);
+    this.apiEntriesByMonth = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_GET_ENTRIES_BY_MONTH_URL);
     this.apiEntryUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.ENTRY_URL);
     console.log('Hello Entry Provider');
   }
@@ -34,6 +36,14 @@ export class EntryProvider {
             let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
             let options = new RequestOptions({ headers: headers });
             return this.http.get(this.apiEntriesByCategoryUrl + "/" + idCategory).map(res => res.json());
+    }
+
+    listEntriesByMonth(month: number){
+        console.log("List entries by month into provider method");
+         this.entryList = [];
+            let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+            let options = new RequestOptions({ headers: headers });
+            return this.http.get(this.apiEntriesByMonth + "/" + month).map(res => res.json());
     }
 
    listEntriesByItem(idItem: number){

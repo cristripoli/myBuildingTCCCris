@@ -10,7 +10,7 @@ import { Entry } from '../../model/entry';
 import { Building } from '../../model/building';
 import { EntryPage } from '../entry/entryPage';
 import { ItemListPage } from '../item/itemListPage';
-import { ReportsPage } from '../reports/reportsPage';
+import { ReportsByMonthPage } from '../reports/reportsByMonthPage';
 
 @Component({
   selector: 'page-home',
@@ -109,7 +109,7 @@ export class HomePage {
   }
 
   public goToReports(){
-    this.navCtrl.push(ReportsPage);
+    this.navCtrl.push(ReportsByMonthPage);
   }
 
   getLoadProgress() : number{

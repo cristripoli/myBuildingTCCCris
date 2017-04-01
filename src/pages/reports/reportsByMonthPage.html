@@ -7,12 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>reports</ion-title>
+    <ion-title>reports by month</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list *ngIf="isDataAvailable">
+    <ion-item *ngFor="let spentByMonthList of spentByMonth">
+      <ion-icon [name]="card" item-left></ion-icon>
+      
+      <div item-left (click)="goToItemList($event, category)">
+        {{spentByMonth.month}}
+      </div>
 
+      <div class="item-note" item-right>
+        R$ {{spentByMonth.totalSpent}}
+      </div>
+
+      <ion-icon name="add" item-right (click)="goToEntryPage(category)"></ion-icon>
+
+    </ion-item>
+  </ion-list>
 </ion-content>

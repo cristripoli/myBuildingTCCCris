@@ -22,6 +22,7 @@ import { ItemListPage } from '../pages/item/itemListPage';
 import { EntryListPage } from '../pages/entry/entryListPage';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { ReportsPage } from '../pages/reports/reportsPage';
+import { ReportsByMonthPage } from '../pages/reports/reportsByMonthPage';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ReportsPage } from '../pages/reports/reportsPage';
     Building,
     Settings,
     ReportsPage,
+    ReportsByMonthPage,
     About,
     ProgressBarComponent
   ],
@@ -52,6 +54,7 @@ import { ReportsPage } from '../pages/reports/reportsPage';
     ItemListPage,
     EntryListPage,
     ReportsPage,
+    ReportsByMonthPage,
     Building,
     Settings,
     About
