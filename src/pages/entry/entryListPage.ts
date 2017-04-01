@@ -25,9 +25,7 @@ import { EntryPage } from '../entry/entryPage';
   constructor(public navCtrl: NavController, public navParams: NavParams, public entryProvider: EntryProvider) {
    
     console.log("EntryPage constructor");
-
     this.fillItemParam(navParams);
-
     this.loadingEntryList();
  }
 
@@ -48,7 +46,6 @@ import { EntryPage } from '../entry/entryPage';
                             }
                   );
   }
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EntryPage');

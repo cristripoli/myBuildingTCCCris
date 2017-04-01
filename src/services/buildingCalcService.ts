@@ -8,7 +8,7 @@ export class BuildingCalcService {
     constructor() {
     }
     
-    public sumTotalSpentByCategory(entries: Array<Entry>) {
+    public sumTotalSpent(entries: Array<Entry>) {
       let total = 0;
       for(let entry of entries){
           total += entry.getValue();

@@ -10,6 +10,7 @@ import { Entry } from '../../model/entry';
 import { Building } from '../../model/building';
 import { EntryPage } from '../entry/entryPage';
 import { ItemListPage } from '../item/itemListPage';
+import { ReportsPage } from '../reports/reportsPage';
 
 @Component({
   selector: 'page-home',
@@ -64,8 +65,9 @@ export class HomePage {
                         data => this.entryProvider.fillEntryList(data),
                           err => console.log(err),
                           () => {
-                                  category.setTotal(this.calcService.sumTotalSpentByCategory(this.entryProvider.getEntryList())); 
+                                  category.setTotal(this.calcService.sumTotalSpent(this.entryProvider.getEntryList())); 
                                   console.log("category: " + category);
+                                  this.totalSpent += category.getTotal();
                                   this.loadingChartInfo(category);
                                 }
                       );
@@ -73,7 +75,6 @@ export class HomePage {
 
     setTimeout(() => {
        this.setLoadProgress(this.calcService.calculateEstimatedValueProgress(this.building.getEstimatedValue()));
-       this.totalSpent = this.calcService.getTotalSpent();
        this.balance = this.building.getEstimatedValue() - this.totalSpent;
        return this.isDataAvailable = true;
     });
@@ -106,6 +107,11 @@ export class HomePage {
   public showDetails(){
     this.showDetailsFinacial = !this.showDetailsFinacial;
   }
+
+  public goToReports(){
+    this.navCtrl.push(ReportsPage);
+  }
+
   getLoadProgress() : number{
       return this.loadProgress;
   }

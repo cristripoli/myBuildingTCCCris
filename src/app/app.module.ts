@@ -21,6 +21,7 @@ import { ItemPage } from '../pages/item/itemPage';
 import { ItemListPage } from '../pages/item/itemListPage';
 import { EntryListPage } from '../pages/entry/entryListPage';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+import { ReportsPage } from '../pages/reports/reportsPage';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     EntryListPage,
     Building,
     Settings,
+    ReportsPage,
     About,
     ProgressBarComponent
   ],
@@ -49,6 +51,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     ItemPage,
     ItemListPage,
     EntryListPage,
+    ReportsPage,
     Building,
     Settings,
     About

@@ -56,14 +56,15 @@
   </ion-list>
 
 </ion-content>
-  <ion-footer>
-    <ion-toolbar>
-      <p>Ash, Misty, Brock</p>
-      <ion-buttons end>
-        <button ion-button icon-right color="royal">
-          Send
-          <ion-icon name="send"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-footer>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <button ion-button (click)="goToReports()">
+        <ion-icon name="stats"></ion-icon>
+        <ion-title>
+        Relatórios
+        </ion-title>
+      </button>
+    </ion-buttons>  
+  </ion-toolbar>
+</ion-footer>

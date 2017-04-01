@@ -44,6 +44,14 @@ export class EntryProvider {
             return this.http.get(this.apiEntriesByItemUrl + "/" + idItem).map(res => res.json());
     }
 
+    listEntries(){
+        console.log("List entries by item into provider method");
+         this.entryList = [];
+            let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+            let options = new RequestOptions({ headers: headers });
+            return this.http.get(this.apiEntriesByItemUrl).map(res => res.json());
+    }
+
     public fillEntryList(data: any){
         console.log("data: " + data);
         this.entryList =  this.entryService.convertDataToEntryList(data);
