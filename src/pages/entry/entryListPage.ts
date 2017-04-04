@@ -23,7 +23,7 @@ import { EntryPage } from '../entry/entryPage';
   private item: Item;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public entryProvider: EntryProvider) {
-   
+
     console.log("EntryPage constructor");
     this.fillItemParam(navParams);
     this.loadingEntryList();
@@ -41,7 +41,7 @@ import { EntryPage } from '../entry/entryPage';
                       data => this.entryProvider.fillEntryList(data),
                       err => console.log(err),
                       () => {
-                              this.setEntries(this.entryProvider.getEntryList()); 
+                              this.setEntries(this.entryProvider.getEntryList());
                               console.log(this.entries);
                             }
                   );
@@ -52,6 +52,7 @@ import { EntryPage } from '../entry/entryPage';
   }
 
   goToEntryPage(){
+    //this.navCtrl.push(EntryPage, {"item": this.item});
     this.navCtrl.push(EntryPage, {"item": this.item});
   }
 

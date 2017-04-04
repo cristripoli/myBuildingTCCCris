@@ -27,6 +27,7 @@ import { StorePage } from '../store/storePage';
   private items: Array<Item>;
   private stores: Array<Store>;
   private total: string;
+  public isCategoryRead: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, 
               public entryProvider: EntryProvider, public categoryProvider: CategoryProvider, public storeProvider: StoreProvider) {
@@ -43,7 +44,7 @@ import { StorePage } from '../store/storePage';
     }else{
       this.fillCategoryParam(navParams);
       this.loadingItemList();
-    } 
+    }
 
     this.loadingStoreList();  
  }
@@ -79,6 +80,7 @@ import { StorePage } from '../store/storePage';
                   this.setCategory(this.categoryProvider.getCategory()); 
                   console.log(this.category);
                   this.loadingItemList();
+                  this.isCategoryRead = true;
                 }
       );
   }
