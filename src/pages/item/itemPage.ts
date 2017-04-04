@@ -46,10 +46,6 @@ export class ItemPage {
     this.navCtrl.push(ItemListPage, this.category);
   }
 
-  test(){
-     console.log('testeeeeeeee');
-  }
-
   public getItem(): Item{
     return this.item;
   }

@@ -8,6 +8,7 @@ export class Entry{
     private paid: boolean;
     private quantity: number;
     private total: number;
+    private store_id: number;
 
     constructor(id:number, description: string, date: string, value:number, 
                 id_item: number, paid: boolean, quantity: number, total: number){
@@ -45,6 +46,9 @@ export class Entry{
     public getTotal():number{
         return this.total;
     }
+    public getStoreId():number{
+        return this.store_id;
+    }
     public setId(id: number){
         this.id = id;
     }
@@ -68,5 +72,8 @@ export class Entry{
     }
     public setTotal(total: number){
         this.total = total;
+    }
+    public setStoreId(storeId: number){
+        this.store_id = storeId;
     }
 }

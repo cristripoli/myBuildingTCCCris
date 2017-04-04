@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { ItemProvider } from '../../providers/itemProvider';
+import { StoreProvider } from '../../providers/storeProvider';
 import { EntryProvider } from '../../providers/entryProvider';
 import { CategoryProvider } from '../../providers/categoryProvider';
 import { Entry } from '../../model/entry';
 import { Item } from '../../model/item';
+import { Store } from '../../model/store';
 import { Category } from '../../model/category';
 import { HomePage } from '../home/homePage';
+import { StorePage } from '../store/storePage';
 /*
   Generated class for the Entry page.
 
@@ -22,9 +25,11 @@ import { HomePage } from '../home/homePage';
   private item: Item;
   private category: Category;
   private items: Array<Item>;
+  private stores: Array<Store>;
   private total: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public entryProvider: EntryProvider, public categoryProvider: CategoryProvider,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, 
+              public entryProvider: EntryProvider, public categoryProvider: CategoryProvider, public storeProvider: StoreProvider) {
     this.entry = new Entry(null, "", "", null, null,null,1,0);
     console.log("EntryPage constructor");
     console.log(navParams);
@@ -38,7 +43,9 @@ import { HomePage } from '../home/homePage';
     }else{
       this.fillCategoryParam(navParams);
       this.loadingItemList();
-    }   
+    } 
+
+    this.loadingStoreList();  
  }
 
  private fillCategoryParam(navParams: NavParams){
@@ -55,25 +62,36 @@ import { HomePage } from '../home/homePage';
 
   private loadingItemList() {
     this.itemProvider.listItemsByCategory(this.category.getId()).subscribe(
-                      data => this.itemProvider.fillItemList(data),
-                      err => console.log(err),
-                      () => {
-                              this.setItems(this.itemProvider.getItemList()); 
-                              console.log(this.items);
-                            }
-                  );
+          data => this.itemProvider.fillItemList(data),
+          err => console.log(err),
+          () => {
+                  this.setItems(this.itemProvider.getItemList()); 
+                  console.log(this.items);
+                }
+      );
   }
 
   private loadingCategory(){
     this.categoryProvider.getCategoryById(this.item.getId()).subscribe(
-                      data => this.categoryProvider.fillCategory(data),
-                      err => console.log(err),
-                      () => {
-                              this.setCategory(this.categoryProvider.getCategory()); 
-                              console.log(this.category);
-                              this.loadingItemList();
-                            }
-                  );
+          data => this.categoryProvider.fillCategory(data),
+          err => console.log(err),
+          () => {
+                  this.setCategory(this.categoryProvider.getCategory()); 
+                  console.log(this.category);
+                  this.loadingItemList();
+                }
+      );
+  }
+
+  private loadingStoreList() {
+  this.storeProvider.listStores().subscribe(
+        data => this.storeProvider.fillStoreList(data),
+        err => console.log(err),
+        () => {
+                this.setStores(this.storeProvider.getStoreList()); 
+                console.log(this.stores);
+              }
+    );
   }
 
   private saveEntry(entry: Entry){
@@ -92,7 +110,9 @@ import { HomePage } from '../home/homePage';
   logForm() {
     console.log(this.entry.getDescription);
   }
-
+  goToStorePage(){
+    this.navCtrl.push(StorePage);
+  }
   back(){
     this.navCtrl.push(HomePage);
   }
@@ -119,5 +139,13 @@ import { HomePage } from '../home/homePage';
 
   public setItems(items: Array<Item>){
     this.items = items;
+  }
+
+  public getStores(): Array<Store>{
+    return this.stores;
+  }
+
+  public setStores(stores: Array<Store>){
+    this.stores = stores;
   }
 }

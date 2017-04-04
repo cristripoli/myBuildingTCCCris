@@ -12,13 +12,12 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-list *ngIf="isDataAvailable">
     <ion-item *ngFor="let spentByMonthList of spentByMonth">
       <ion-icon [name]="card" item-left></ion-icon>
       
-      <div item-left (click)="goToItemList($event, category)">
+      <div item-left>
         {{spentByMonth.month}}
       </div>
 

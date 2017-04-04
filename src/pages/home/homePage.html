@@ -22,8 +22,10 @@
     <ion-label>Saldo: R$ {{balance}}</ion-label>
   </ion-card>
 
+  <div class="item-note" item-left>
+    <progress-bar [progress]="loadProgress"></progress-bar> 
+  </div>
   <div class="item-note" item-right>
-    <progress-bar [progress]="loadProgress"></progress-bar>
     <ion-icon name="more" item-right (click)="showDetails()"></ion-icon>
   </div>
 

@@ -11,15 +11,22 @@ import { CategoryProvider } from '../providers/categoryProvider';
 import { EntryProvider } from '../providers/entryProvider';
 import { ItemProvider } from '../providers/itemProvider';
 import { BuildingProvider } from '../providers/buildingProvider';
+import { StoreProvider } from '../providers/storeProvider';
+import { CityProvider } from '../providers/cityProvider';
+import { StateProvider } from '../providers/stateProvider';
 import { CategoryService } from '../services/categoryService';
 import { BuildingService } from '../services/buildingService';
 import { EntryService } from '../services/entryService';
 import { ItemService } from '../services/itemService';
 import { BuildingCalcService } from '../services/buildingCalcService';
+import { CityService } from '../services/cityService';
+import { StoreService } from '../services/storeService';
+import { StateService } from '../services/stateService';
 import { EntryPage } from '../pages/entry/entryPage';
 import { ItemPage } from '../pages/item/itemPage';
 import { ItemListPage } from '../pages/item/itemListPage';
 import { EntryListPage } from '../pages/entry/entryListPage';
+import { StorePage } from '../pages/store/storePage';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { ReportsPage } from '../pages/reports/reportsPage';
 import { ReportsByMonthPage } from '../pages/reports/reportsByMonthPage';
@@ -37,6 +44,7 @@ import { ReportsByMonthPage } from '../pages/reports/reportsByMonthPage';
     Settings,
     ReportsPage,
     ReportsByMonthPage,
+    StorePage,
     About,
     ProgressBarComponent
   ],
@@ -55,6 +63,7 @@ import { ReportsByMonthPage } from '../pages/reports/reportsByMonthPage';
     EntryListPage,
     ReportsPage,
     ReportsByMonthPage,
+    StorePage,
     Building,
     Settings,
     About
@@ -66,10 +75,16 @@ import { ReportsByMonthPage } from '../pages/reports/reportsByMonthPage';
     EntryProvider,
     EntryService,
     ItemProvider,
+    CityProvider,
+    StateProvider,
+    StoreProvider,
     ItemService,
     BuildingProvider,
     BuildingService,
-    BuildingCalcService
+    BuildingCalcService,
+    StoreService,
+    CityService,
+    StateService
     ]
 })
 export class AppModule {}

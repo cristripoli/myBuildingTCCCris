@@ -38,6 +38,7 @@ export class ReportsByMonthPage {
                   this.entries = this.entryProvider.getEntryList();
                   spentByMonth = new SpentByMonth(""+i+"",this.calcService.sumTotalSpent(this.entries),null);
                   this.spentByMonthList.push(spentByMonth);
+                  console.log(this.spentByMonthList);
               }
         );
       }

@@ -43,6 +43,15 @@
             <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="entry.date" name="date"></ion-datetime>
         </ion-item>
         <ion-item>
+            <ion-label>Loja:</ion-label>
+            <ion-select [(ngModel)]="entry.store_id" name="store">
+              <ion-option *ngFor="let store of stores" [value]="store.id">{{store.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="add" item-right (click)="goToStorePage()"></ion-icon>
+        </ion-item>
+        <ion-item>
             <ion-label floating >Qtd/Peça:</ion-label>
             <ion-input type="number" (keyup)="onKey($event)" [(ngModel)]="entry.quantity" name="quantity" [value]="entry.quantity"></ion-input>
         </ion-item>
