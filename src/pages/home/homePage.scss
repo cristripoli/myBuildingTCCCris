@@ -1,3 +1,16 @@
 page-home {
 
+#progress progress-bar .progress-inner{
+  min-width: 25% !important;
+}
+#progress progress-bar .progress-outer{
+  width: 180% !important;
+}
+
+#icon-details{
+  text-align: right;
+  align-content: -webkit-baseline-middle;
+  margin-top: 20px;
+}
+
 }
