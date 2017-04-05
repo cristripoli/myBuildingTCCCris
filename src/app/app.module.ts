@@ -30,6 +30,8 @@ import { StorePage } from '../pages/store/storePage';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { ReportsPage } from '../pages/reports/reportsPage';
 import { ReportsByMonthPage } from '../pages/reports/reportsByMonthPage';
+import { RankingPage } from '../pages/ranking/rankingPage';
+import { OrderByPipe } from '../pipes/orderByPipe';
 
 @NgModule({
   declarations: [
@@ -45,8 +47,10 @@ import { ReportsByMonthPage } from '../pages/reports/reportsByMonthPage';
     ReportsPage,
     ReportsByMonthPage,
     StorePage,
+    RankingPage,
     About,
-    ProgressBarComponent
+    ProgressBarComponent,
+    OrderByPipe
   ],
   imports: [
     ChartsModule,
@@ -64,6 +68,7 @@ import { ReportsByMonthPage } from '../pages/reports/reportsByMonthPage';
     ReportsPage,
     ReportsByMonthPage,
     StorePage,
+    RankingPage,
     Building,
     Settings,
     About

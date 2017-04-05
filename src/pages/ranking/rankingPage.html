@@ -1,0 +1,38 @@
+<!--
+  Generated template for the RankingPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>rankingPage</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-item>
+  <ion-label>Item</ion-label>
+  <ion-select [(ngModel)]="itemId" name="item">
+      <ion-option *ngFor="let item of items" [value]="item.id" (ionChange)="loadRaking($event, itemId)">
+        {{item.name}}
+      </ion-option>
+  </ion-select>
+</ion-item>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let entry of rankingEntriesList | orderBy:'value'">
+
+      <div item-left>
+        {{entry.description}}
+      </div>
+      
+      <div class="item-note" item-right>
+        R$ {{entry.value}}
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

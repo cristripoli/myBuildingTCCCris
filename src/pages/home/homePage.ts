@@ -11,6 +11,8 @@ import { Building } from '../../model/building';
 import { EntryPage } from '../entry/entryPage';
 import { ItemListPage } from '../item/itemListPage';
 import { ReportsByMonthPage } from '../reports/reportsByMonthPage';
+import { RankingPage } from '../ranking/rankingPage';
+
 
 @Component({
   selector: 'page-home',
@@ -94,6 +96,10 @@ export class HomePage {
 
   goToItemList(event, category) {
     this.navCtrl.push(ItemListPage, category);
+  }
+
+  goToRankingPage(event, category) {
+    this.navCtrl.push(RankingPage);
   }
 
   // events

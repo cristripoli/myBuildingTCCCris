@@ -25,6 +25,14 @@ export class ItemProvider {
     console.log('Hello ItemProvider Provider');
   }
 
+  listItems(){
+      console.log("List items by category into provider method");
+        this.itemList = [];
+          let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+          let options = new RequestOptions({ headers: headers });
+          return this.http.get(this.apiItemUrl).map(res => res.json());
+  }
+  
   listItemsByCategory(idCategory: number){
       console.log("List items by category into provider method");
         this.itemList = [];
