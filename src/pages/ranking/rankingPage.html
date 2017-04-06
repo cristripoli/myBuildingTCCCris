@@ -12,21 +12,25 @@
 
 </ion-header>
 
-<ion-item>
-  <ion-label>Item</ion-label>
-  <ion-select [(ngModel)]="itemId" name="item">
-      <ion-option *ngFor="let item of items" [value]="item.id" (ionChange)="loadRaking($event, itemId)">
-        {{item.name}}
-      </ion-option>
-  </ion-select>
-</ion-item>
-
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let entry of rankingEntriesList | orderBy:'value'">
+  <ion-item>
+    <ion-label>Item</ion-label>
+    <ion-select [(ngModel)]="itemId" name="item" (ionChange)="loadRaking($event, itemId)">
+        <ion-option *ngFor="let item of items" [value]="item.id">
+          {{item.name}}
+        </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list *ngIf="isDataAvailable">
+    <ion-item *ngFor="let entry of rankingEntriesList">
 
       <div item-left>
-        {{entry.description}}
+        {{entry.date}}
+      </div>
+      
+      <div item-left>
+        {{entry.store_name}}
       </div>
       
       <div class="item-note" item-right>

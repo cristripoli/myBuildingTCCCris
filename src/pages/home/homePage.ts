@@ -117,7 +117,7 @@ export class HomePage {
   public goToReports(){
     this.navCtrl.push(ReportsByMonthPage);
   }
-
+  
   getLoadProgress() : number{
       return this.loadProgress;
   }

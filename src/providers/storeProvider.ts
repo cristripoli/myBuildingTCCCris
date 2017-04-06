@@ -17,6 +17,7 @@ export class StoreProvider {
     
   private apiStoreUrl:string;
   private storeList:Array<Store>;
+  private store: Store;
 
   constructor(public http: Http, private storeService: StoreService) {
     this.apiStoreUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.STORE_URL);
@@ -31,10 +32,24 @@ export class StoreProvider {
           return this.http.get(this.apiStoreUrl).map(res => res.json());
   }
 
+  getStoreById(id: number){
+      console.log("List stores by category into provider method");
+        this.storeList = [];
+          let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+          let options = new RequestOptions({ headers: headers });
+          return this.http.get(this.apiStoreUrl + "/" + id).map(res => res.json());
+  }
+
   public fillStoreList(data: any){
       console.log("data: " + data);
       this.storeList =  this.storeService.convertDataToStoreList(data);
       console.log("storeList: " +  this.storeList);        
+  }
+
+   public fillStore(data: any){
+      console.log("data: " + data);
+      this.store =  this.storeService.convertDataToStore(data);
+      console.log("store: " +  this.store);        
   }
   
   public saveStore(store: Store){
@@ -53,6 +68,13 @@ export class StoreProvider {
   }
   setStoreList(storeList: Array<Store>){
       this.storeList = storeList;
+  }
+
+  getStore() : Store{
+      return this.store;
+  }
+  setStore(store: Store){
+      this.store = store;
   }
 
   private handleError (error: Response | any) {

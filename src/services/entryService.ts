@@ -11,7 +11,8 @@ export class EntryService {
      
        for (let json of data) {
          console.log("json: " + json);
-         entry = new Entry(json.id,json.description,json.date,json.value,json.id_item,json.paid,json.quantity,json.value*json.quantity);
+         entry = new Entry(json.id,json.description,json.date,json.value,json.id_item,json.paid,
+                           json.quantity,json.value*json.quantity,json.store_id);
          console.log("Object entry get: " + entry.getId);
          entryList.push(entry);
        }
@@ -26,7 +27,8 @@ export class EntryService {
         "value": entry.getValue(),
         "id_item": entry.getIdItem(),
         "paid": entry.isPaid(),
-        "quantity": entry.getQuantity()
+        "quantity": entry.getQuantity(),
+        "store_id": entry.getStoreId()
       });
       return entryJson;
     }

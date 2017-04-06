@@ -19,6 +19,15 @@ export class StoreService {
        return storeList
     }
 
+    convertDataToStore(data:any):Store {
+
+      let store:Store;
+      store = new Store(data[0].id,data[0].name,data[0].description);
+      console.log("Object store get: " + store.getName());
+
+      return store
+    }
+
     public convertStoreToJson(store: Store){
       let storeJson = JSON.stringify({
         "name": store.getName(),

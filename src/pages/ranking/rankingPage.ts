@@ -2,9 +2,10 @@ import { Component} from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Item } from '../../model/item';
 import { EntryProvider } from '../../providers/entryProvider';
+import { StoreProvider } from '../../providers/storeProvider';
 import { Entry } from '../../model/entry';
+import { Store } from '../../model/store';
 import { ItemProvider } from '../../providers/itemProvider';
-import { OrderByPipe } from '../../pipes/orderByPipe';
 
 /*
   Generated class for the RankingPage page.
@@ -15,14 +16,17 @@ import { OrderByPipe } from '../../pipes/orderByPipe';
 @Component({
   selector: 'page-ranking-page',
   templateUrl: 'rankingPage.html',
-  pipes: [OrderByPipe]
 })
+
 export class RankingPage {
   private items: Array<Item>;
   private rankingEntriesList: Array<Entry>;
+  private store: Store;
   private itemId: number;
+  public isDataAvailable = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public entryProvider: EntryProvider, public itemProvider: ItemProvider,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public entryProvider: EntryProvider, 
+              public itemProvider: ItemProvider, public storeProvider: StoreProvider) {
     this.loadingItemList();
   }
 
@@ -48,10 +52,28 @@ export class RankingPage {
                       () => {
                               this.setRankingEntriesList(this.entryProvider.getEntryList()); 
                               console.log(this.setRankingEntriesList);
+                              this.getRankingEntriesList().sort((a: Entry, b: Entry)=>{
+                                return a.getValue() - b.getValue();
+                              });
+                              for (let entry of this.getRankingEntriesList()){
+                                  this.loadingStore(entry);
+                              }
+                              this.isDataAvailable = true;
                             }
                   );
   }
 
+  private loadingStore(entry: Entry) {
+    this.storeProvider.getStoreById(entry.getStoreId()).subscribe(
+          data => this.storeProvider.fillStore(data),
+          err => console.log(err),
+          () => {
+                  this.setStore(this.storeProvider.getStore()); 
+                  console.log(this.store);
+                  entry.setStoreName(this.store.getName());
+                }
+      );
+  }
   loadRaking($event, itemId){
     this.loadingEntryListByItem();
   }
@@ -72,5 +94,12 @@ export class RankingPage {
     this.items = items;
   }
 
+  public getStore(): Store{
+    return this.store;
+  }
+
+  public setStore(store: Store){
+    this.store = store;
+  }
 
 }

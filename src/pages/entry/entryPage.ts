@@ -31,7 +31,7 @@ import { StorePage } from '../store/storePage';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, 
               public entryProvider: EntryProvider, public categoryProvider: CategoryProvider, public storeProvider: StoreProvider) {
-    this.entry = new Entry(null, "", "", null, null,null,1,0);
+    this.entry = new Entry(null, "", "", null, null,null,1,0,null);
     console.log("EntryPage constructor");
     console.log(navParams);
 
