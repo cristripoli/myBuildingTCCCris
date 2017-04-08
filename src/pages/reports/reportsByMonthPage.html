@@ -14,9 +14,9 @@
 
 <ion-content padding>
   <ion-list *ngIf="isDataAvailable">
-    <ion-item *ngFor="let spentByMonthList of spentByMonth">
+    <ion-item *ngFor="let spentByMonth of spentByMonthList">
       <ion-icon [name]="card" item-left></ion-icon>
-      
+
       <div item-left>
         {{spentByMonth.month}}
       </div>

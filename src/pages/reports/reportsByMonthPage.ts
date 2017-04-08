@@ -25,7 +25,6 @@ export class ReportsByMonthPage {
     this.spentByMonthList = new Array<SpentByMonth>();
     this.loadingTotalSpentByMonth((callback) => {
                                 });
-                              
   }
 
   private loadingTotalSpentByMonth(callback) {
@@ -42,13 +41,11 @@ export class ReportsByMonthPage {
               }
         );
       }
-          
       setTimeout(() => {
           return this.isDataAvailable = true;
       });
     }
 
-    
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReportsPage');
   }
