@@ -1,5 +1,3 @@
-<script src="../../../node_modules/chart.js/src/chart.js"></script>
-<script src="../../../node_modules/chart.js/dist/Chart.bundle.js"></script>
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -36,7 +34,9 @@
 
 
   <div style="display: block">
-    <canvas baseChart
+
+  <canvas #categoryCanvas></canvas>
+  <!--  <canvas baseChart
                 [data]="doughnutChartData"
                 [labels]="doughnutChartLabels"
                 [chartType]="doughnutChartType"
@@ -44,6 +44,8 @@
                 (chartClick)="chartClicked($event)"
                 *ngIf="isDataAvailable">
     </canvas>
+  -->
+
   </div>
 
   <ion-list>
