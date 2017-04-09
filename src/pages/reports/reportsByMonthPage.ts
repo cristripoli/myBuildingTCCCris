@@ -4,6 +4,8 @@ import { EntryProvider } from '../../providers/entryProvider';
 import { Entry } from '../../model/entry';
 import { SpentByMonth } from '../../model/spentByMonth';
 import { BuildingCalcService } from '../../services/buildingCalcService';
+import { MonthEnum } from '../../enum/monthEnum';
+import { UtilService } from '../../services/utilService';
 
 /*
   Generated class for the Reports page.
@@ -19,10 +21,12 @@ export class ReportsByMonthPage {
   private entries: Array<Entry>;
   private spentByMonthList: Array<SpentByMonth>;
   public isDataAvailable = false;
+  public estimatedValue: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public entryProvider: EntryProvider, public calcService: BuildingCalcService) {
     this.entries = new Array<Entry>();
     this.spentByMonthList = new Array<SpentByMonth>();
+    this.estimatedValue = navParams.data;
     this.loadingTotalSpentByMonth((callback) => {
                                 });
   }
@@ -34,8 +38,10 @@ export class ReportsByMonthPage {
         data => this.entryProvider.fillEntryList(data),
         err => console.log(err),
         () => {
+                  let month = UtilService.getEnumString(MonthEnum, MonthEnum["MONTH_" + i]);
+                  let totalByMonth = this.calcService.sumTotalSpent(this.entries);
                   this.entries = this.entryProvider.getEntryList();
-                  spentByMonth = new SpentByMonth(""+i+"",this.calcService.sumTotalSpent(this.entries),null);
+                  spentByMonth = new SpentByMonth(month, totalByMonth, this.calcService.calculatePercent(totalByMonth, this.estimatedValue));
                   this.spentByMonthList.push(spentByMonth);
                   console.log(this.spentByMonthList);
               }

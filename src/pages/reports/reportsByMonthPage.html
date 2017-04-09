@@ -7,20 +7,23 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>reports by month</ion-title>
+    <ion-title>Gastos por mês</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
   <ion-list *ngIf="isDataAvailable">
+    <ion-list-header>
+      Valores e Pocentagens Gastos Por Mês:
+    </ion-list-header>
     <ion-item *ngFor="let spentByMonth of spentByMonthList">
-      <ion-icon [name]="card" item-left></ion-icon>
 
-      <div item-left>
-        {{spentByMonth.month}}
+      <ion-icon name="basket" item-left></ion-icon>
+
+      <div class="item-note">
+        {{spentByMonth.month}}: {{spentByMonth.percent}} %
       </div>
-
       <div class="item-note" item-right>
         R$ {{spentByMonth.totalSpent}}
       </div>

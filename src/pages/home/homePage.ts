@@ -130,6 +130,10 @@ export class HomePage {
   goToRankingPage(event, category) {
     this.navCtrl.push(RankingPage);
   }
+  
+  public goToReports(){
+    this.navCtrl.push(ReportsByMonthPage, this.building.getEstimatedValue());
+  }
 
   // events
   public chartClicked(e:any):void {
@@ -141,10 +145,6 @@ export class HomePage {
   }
   public showDetails(){
     this.showDetailsFinacial = !this.showDetailsFinacial;
-  }
-
-  public goToReports(){
-    this.navCtrl.push(ReportsByMonthPage);
   }
 
   getLoadProgress() : number{

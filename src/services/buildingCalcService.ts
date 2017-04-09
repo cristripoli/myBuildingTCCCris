@@ -23,6 +23,10 @@ export class BuildingCalcService {
       return ((this.totalSpent * 100)/estimatedValue);
     }
 
+    public calculatePercent(value: number, estimatedValue: number) {
+      return ((value * 100)/estimatedValue);
+    }
+
     public getTotalSpent(){
       return this.totalSpent;
     }
