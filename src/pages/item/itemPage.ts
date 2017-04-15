@@ -18,6 +18,7 @@ import { ItemListPage } from '../item/itemListPage'
 export class ItemPage {
   private item: Item;
   private category: Category;
+  public isCategoryRead: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public events: Events) {
     console.log("ItemPage constructor");
     this.item = new Item(null,"","",null);
@@ -31,6 +32,7 @@ export class ItemPage {
     this.category = navParams.data;
     this.item.setCategoryId(this.category.getId());
     console.log("category: " + this.category);
+    this.isCategoryRead = true;
   }
 
   ionViewDidLoad() {
@@ -52,5 +54,13 @@ export class ItemPage {
 
   public setItem(item: Item){
     this.item = item;
+  }
+
+  public getCategory(): Category{
+    return this.category;
+  }
+
+  public setCategory(category: Category){
+    this.category = category;
   }
 }

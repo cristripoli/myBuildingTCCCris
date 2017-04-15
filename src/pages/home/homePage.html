@@ -15,9 +15,9 @@
   </p>
 
   <ion-card *ngIf="showDetailsFinacial">
-    <ion-label>Estimado: R$ {{building.estimated_value}}</ion-label>
-    <ion-label>Gasto: R$ {{totalSpent}}</ion-label>
-    <ion-label>Saldo: R$ {{balance}}</ion-label>
+    <ion-label><a ion-text color="purple">Estimado:</a> {{building.estimated_value | currency:'BRL':true:'.2'}}</ion-label>
+    <ion-label><a ion-text color="purple">Gasto: </a>{{totalSpent | currency:'BRL':true:'.2'}}</ion-label>
+    <ion-label><a ion-text color="purple">Saldo:</a> {{balance | currency:'BRL':true:'.2'}}</ion-label>
   </ion-card>
 
   <ion-grid>
@@ -30,8 +30,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-
 
   <div style="display: block">
 
@@ -57,7 +55,7 @@
       </div>
 
       <div class="item-note" item-right>
-        R$ {{category.total}}
+        {{category.total | currency:'BRL':true:'.2'}}
       </div>
 
       <ion-icon name="add" item-right (click)="goToEntryPage(category)"></ion-icon>

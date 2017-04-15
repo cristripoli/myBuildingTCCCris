@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { TRANSLATIONS, TRANSLATIONS_FORMAT, LOCALE_ID, NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/homePage';
@@ -73,6 +73,7 @@ import { RankingPage } from '../pages/ranking/rankingPage';
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: LOCALE_ID, useValue: 'pt-br' },
     CategoryProvider,
     CategoryService,
     EntryProvider,

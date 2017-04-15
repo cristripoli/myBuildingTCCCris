@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   for more info on Angular 2 Components.
 */
 @Component({
-  selector: 'progress-bar',
+  selector: 'progress-bar, decimal-pipe',
   templateUrl: 'progress-bar.html'
 })
 export class ProgressBarComponent {
