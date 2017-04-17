@@ -10,6 +10,7 @@ import { Store } from '../../model/store';
 import { Category } from '../../model/category';
 import { HomePage } from '../home/homePage';
 import { StorePage } from '../store/storePage';
+import * as moment from 'moment';
 /*
   Generated class for the Entry page.
 
@@ -17,7 +18,7 @@ import { StorePage } from '../store/storePage';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-entry',
+  selector: 'page-entry, decimal-pipe, currency-pipe',
   templateUrl: 'entryPage.html'
 })
   export class EntryPage {
@@ -101,6 +102,7 @@ import { StorePage } from '../store/storePage';
   }
 
   private saveEntry(entry: Entry){
+    entry.setDate(moment(entry.getDate()).format('YYYY-MM-DD'));
     this.entryProvider.saveEntry(entry);
     this.back();
   }

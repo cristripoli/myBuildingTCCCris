@@ -30,15 +30,15 @@
         </div>
         <div *ngIf="hasItemList">
           <ion-item>
-            <ion-label>Item</ion-label>
-            <ion-select [(ngModel)]="entry.id_item" name="item">
+            <ion-label floating>Item</ion-label>
+            <ion-select [(ngModel)]="entry.id_item" name="item" placeholder="Selecione um Item">
                 <ion-option *ngFor="let item of items" [value]="item.id">{{item.name}}</ion-option>
             </ion-select>
           </ion-item>
         </div>
         <div *ngIf="!hasItemList">
           <ion-item>
-            <ion-label>Item</ion-label>
+            <ion-label floating>Item</ion-label>
             <ion-input type="text" [(ngModel)]="entry.id_item" value="item.name" readonly="true" name="category"></ion-input>
           </ion-item>
         </div>
@@ -50,19 +50,19 @@
             <ion-label floating>Date:</ion-label>
             <ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="entry.date" name="date"></ion-datetime>
         </ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col id="store">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col no-padding>
               <ion-item>
-                <ion-label>Loja:</ion-label>
-                <ion-select [(ngModel)]="entry.store_id" name="store">
+                <ion-label floating>Loja:</ion-label>
+                <ion-select id="item-option" [(ngModel)]="entry.store_id" name="store" placeholder="Selecione uma Loja">
                   <ion-option *ngFor="let store of stores" [value]="store.id">{{store.name}}</ion-option>
                 </ion-select>
-               </ion-item>
+              </ion-item>
             </ion-col>
             <ion-col id="icon-add-store">
               <ion-item>
-                <ion-icon name="add" item-right (click)="goToStorePage()"></ion-icon>
+                <ion-icon name="add" item-left (click)="goToStorePage()"></ion-icon>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -76,7 +76,7 @@
             <ion-input type="number" (keyup)="onKey($event)" [(ngModel)]="entry.value" name="value"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>Total: R$ {{entry.total}}</ion-label>
+            <ion-label>Total: {{entry.total | currency:'BRL':true:'.2'}}</ion-label>
         </ion-item>
 
         <ion-item>
