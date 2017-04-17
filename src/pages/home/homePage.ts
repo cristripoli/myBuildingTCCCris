@@ -33,6 +33,8 @@ export class HomePage {
   public building: Building;
   public totalSpent: number = 0;
   public balance: number = 0;
+  public valueMeterEstimated: number = 0;
+  public valueMeterActual: number = 0;
 
 
 
@@ -53,12 +55,16 @@ export class HomePage {
                          label:this.doughnutChartLabels,
                          data: this.doughnutChartData,
                          backgroundColor: [
+                             'rgba(128, 0, 128, 0.2)',
+                             'rgba(54, 162, 235, 0.2)',
                              'rgba(255, 99, 132, 0.2)',
-                             'rgba(54, 162, 235, 0.2)'
+                             'rgba(255, 165, 0, 0.2)'
                          ],
                          hoverBackgroundColor: [
-                             "#FF6384",
+                             '#800080',
                              "#36A2EB",
+                             "#FF6384",
+                             '#FF8C00'
                          ]
                      }]
                  }
@@ -109,6 +115,8 @@ export class HomePage {
     setTimeout(() => {
        this.setLoadProgress(this.calcService.calculateEstimatedValueProgress(this.building.getEstimatedValue()));
        this.balance = this.building.getEstimatedValue() - this.totalSpent;
+       this.valueMeterActual = this.calcService.calculateValueByMeter(this.totalSpent, this.building.getMetreage());
+       this.valueMeterEstimated = this.calcService.calculateValueByMeter(this.building.getEstimatedValue(), this.building.getMetreage());
        return this.isDataAvailable = true;
     });
   }

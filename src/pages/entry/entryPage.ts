@@ -27,8 +27,8 @@ import { StorePage } from '../store/storePage';
   private items: Array<Item>;
   private stores: Array<Store>;
   private total: string;
-  public isCategoryRead: boolean = false;
-  public isHasItemList: boolean;
+  public isCategoryRead = false;
+  public hasItemList = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, 
               public entryProvider: EntryProvider, public categoryProvider: CategoryProvider, public storeProvider: StoreProvider) {
@@ -54,7 +54,7 @@ import { StorePage } from '../store/storePage';
     this.category = new Category(null,"","","");
     this.category = navParams.get('category');
     console.log("category: " + this.category);
-    this.isHasItemList = false;
+    this.isCategoryRead = true;
   }
 
    private fillItemParam(navParams: NavParams){
@@ -70,7 +70,7 @@ import { StorePage } from '../store/storePage';
           () => {
                   this.setItems(this.itemProvider.getItemList()); 
                   console.log(this.items);
-                  this.isHasItemList = true;
+                  this.hasItemList = true;
                 }
       );
   }
@@ -83,7 +83,6 @@ import { StorePage } from '../store/storePage';
                   this.setCategory(this.categoryProvider.getCategory()); 
                   console.log(this.category);
                   this.loadingItemList();
-                  this.isCategoryRead = true;
                 }
       );
   }

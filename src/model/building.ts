@@ -4,13 +4,15 @@ export class Building{
     private name: string;
     private description: string;
     private estimated_value: number;
+    private metreage: number;
     private id_user: number;
 
-    constructor(id:number, name:string, description: string, estimated_value: number, id_user:number, ){
+    constructor(id:number, name:string, description: string, estimated_value: number, metreage: number, id_user:number, ){
       this.id = id;
       this.name = name;
       this.description = description;
       this.estimated_value = estimated_value;
+      this.metreage = metreage;
       this.id_user = id_user;      
     }
     
@@ -26,6 +28,9 @@ export class Building{
     public getEstimatedValue():number{
         return this.estimated_value;
     }    
+    public getMetreage():number{
+        return this.metreage;
+    } 
     public getUserId():number{
         return this.id_user;
     }
@@ -40,6 +45,9 @@ export class Building{
     }
     public setEstimatedValue(estimated_value: number){
         this.estimated_value = estimated_value;
+    }
+    public setMetreage(metreage: number){
+        this.metreage = metreage;
     }
     public setUserId(user_id: number){
         this.id_user = user_id;

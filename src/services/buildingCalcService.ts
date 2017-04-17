@@ -23,6 +23,10 @@ export class BuildingCalcService {
       return ((this.totalSpent * 100)/estimatedValue);
     }
 
+    public calculateValueByMeter(value: number, metreage: number) {
+      return (value / metreage);
+    }
+
     public calculatePercent(value: number, estimatedValue: number) {
       return ((value * 100)/estimatedValue);
     }

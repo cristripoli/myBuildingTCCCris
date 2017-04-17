@@ -23,21 +23,26 @@
 
     <ion-card>
       <form>
-        <ion-item>
-          <div  *ngIf="isCategoryRead">
-            <ion-label floating>Category:</ion-label>
-            <ion-input type="text" [(ngModel)]="category.id" [value]="category.name" disabled="true" name="category"></ion-input>
-          </div>
-        </ion-item>
-        <ion-item>
-          <ion-label>Item</ion-label>
-          <div  *ngIf="isHasItemList">
+        <div *ngIf="isCategoryRead">
+          <ion-item>
+              <ion-label>Categoria:</ion-label>  
+              <ion-input type="text" [(ngModel)]="category.name" [value]="category.name" name="category"></ion-input>
+          </ion-item>
+        </div>
+        <div *ngIf="hasItemList">
+          <ion-item>
+            <ion-label>Item</ion-label>
             <ion-select [(ngModel)]="entry.id_item" name="item">
                 <ion-option *ngFor="let item of items" [value]="item.id">{{item.name}}</ion-option>
             </ion-select>
-          </div>
-
-        </ion-item>
+          </ion-item>
+        </div>
+        <div *ngIf="!hasItemList">
+          <ion-item>
+            <ion-label>Item</ion-label>
+            <ion-input type="text" [(ngModel)]="entry.id_item" value="item.name" readonly="true" name="category"></ion-input>
+          </ion-item>
+        </div>
         <ion-item>
             <ion-label floating>Descrição:</ion-label>
             <ion-input type="text" [(ngModel)]="entry.description" name="description"></ion-input>

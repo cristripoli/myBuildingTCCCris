@@ -28,7 +28,7 @@ export class BuildingProvider{
 
     public getBuildingById(id: number){
             console.log("Get building by Id");
-            this.building = new Building(null,"","",null,null);
+            this.building = new Building(null,"","",null,null,null);
             let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
             let options = new RequestOptions({ headers: headers });
             return this.http.get(this.apiBuildingUrl + "/1" ).map(res => res.json());       

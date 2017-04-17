@@ -11,7 +11,7 @@ export class BuildingService {
      
        for (let json of data) {
          console.log("json: " + json);
-         building = new Building(json.id,json.name,json.description,json.estimated_value,json.id_user);
+         building = new Building(json.id,json.name,json.description,json.estimated_value,json.metreage,json.id_user);
          console.log("Object building get: " + building.getName());
          buildingList.push(building);
        }
@@ -22,7 +22,7 @@ export class BuildingService {
     convertDataToBuilding(data:any):Building {
 
        let building:Building;
-       building = new Building(data[0].id,data[0].name,data[0].description,data[0].estimated_value,data[0].id_user);
+       building = new Building(data[0].id,data[0].name,data[0].description,data[0].estimated_value,data[0].metreage,data[0].id_user);
        console.log("Object building get: " + building.getName());
 
        return building
@@ -32,7 +32,8 @@ export class BuildingService {
       let buildingJson = JSON.stringify({
         "name": building.getName(),
         "description": building.getDescription(), 
-        "estimated_value": building.getEstimatedValue(),                 
+        "estimated_value": building.getEstimatedValue(),        
+        "metreage": building.getMetreage(),          
         "id_user": building.getUserId
       });
       return buildingJson;
