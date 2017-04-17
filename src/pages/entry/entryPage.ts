@@ -32,7 +32,7 @@ import { StorePage } from '../store/storePage';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, 
               public entryProvider: EntryProvider, public categoryProvider: CategoryProvider, public storeProvider: StoreProvider) {
-    this.entry = new Entry(null, "", "", null, null,null,1,0,null);
+    this.entry = new Entry(null, "", new Date().toISOString(), null, null,null,1,0,null);
     console.log("EntryPage constructor");
     console.log(navParams);
 
@@ -61,6 +61,7 @@ import { StorePage } from '../store/storePage';
     this.item = new Item(null,"","",null);
     this.item = navParams.get('item');
     console.log("item: " + this.item);
+    this.hasItemList = false;
   }
 
   private loadingItemList() {
@@ -83,6 +84,7 @@ import { StorePage } from '../store/storePage';
                   this.setCategory(this.categoryProvider.getCategory()); 
                   console.log(this.category);
                   this.loadingItemList();
+                  this.isCategoryRead = true;
                 }
       );
   }
