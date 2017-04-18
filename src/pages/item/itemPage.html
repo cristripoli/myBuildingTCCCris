@@ -21,12 +21,11 @@
 <ion-content>
     <ion-card>
       <form>
+        <div *ngIf="isCategoryRead">
         <ion-item>
-          <div  *ngIf="isCategoryRead">
-            <ion-label floating>Category:</ion-label>
-            <ion-input type="text" [(ngModel)]="item.category_id" name="category" [value]="category.name" disabled="true"></ion-input>
-          </div>
+            <ion-label>Categoria: {{category.name}}</ion-label>
         </ion-item>
+        </div>
         <ion-item>
             <ion-label floating>Name:</ion-label>
             <ion-input type="text" [(ngModel)]="item.name" name="name"></ion-input>

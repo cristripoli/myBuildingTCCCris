@@ -18,7 +18,7 @@ import { ItemListPage } from '../item/itemListPage'
 export class ItemPage {
   private item: Item;
   private category: Category;
-  public isCategoryRead: boolean = false;
+  public isCategoryRead = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public events: Events) {
     console.log("ItemPage constructor");
     this.item = new Item(null,"","",null);
