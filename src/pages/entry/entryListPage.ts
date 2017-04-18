@@ -14,7 +14,7 @@ import { EntryPage } from '../entry/entryPage';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-entry',
+  selector: 'page-entry, decimal-pipe, currency-pipe,',
   templateUrl: 'entryListPage.html'
 })
   export class EntryListPage {

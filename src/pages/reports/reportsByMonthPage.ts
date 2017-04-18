@@ -14,7 +14,7 @@ import { UtilService } from '../../services/utilService';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-reports-by-month',
+  selector: 'page-reports-by-month, decimal-pipe, currency-pipe',
   templateUrl: 'reportsByMonthPage.html'
 })
 export class ReportsByMonthPage {

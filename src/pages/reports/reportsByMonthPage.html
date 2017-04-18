@@ -25,7 +25,7 @@
         {{spentByMonth.month}}: {{spentByMonth.percent}} %
       </div>
       <div class="item-note" item-right>
-        R$ {{spentByMonth.totalSpent}}
+        {{spentByMonth.totalSpent | currency:'BRL':true:'.2'}}
       </div>
 
       <ion-icon name="add" item-right (click)="goToEntryPage(category)"></ion-icon>

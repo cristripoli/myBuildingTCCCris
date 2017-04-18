@@ -15,7 +15,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Lançamentos</ion-title>
+    <ion-title>Lançamentos de {{item.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -25,7 +25,7 @@
     <ion-item *ngFor="let entry of entries">
       {{entry.description}}
       <div class="item-note" item-right>
-        R$ {{entry.value}}
+        {{entry.value | currency:'BRL':true:'.2'}}
       </div>
     </ion-item>
   </ion-list>
