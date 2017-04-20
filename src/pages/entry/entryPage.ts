@@ -56,6 +56,7 @@ import * as moment from 'moment';
     this.category = navParams.get('category');
     console.log("category: " + this.category.getName());
     this.isCategoryRead = true;
+    this.hasItemList = true;
   }
 
    private fillItemParam(navParams: NavParams){
@@ -72,7 +73,6 @@ import * as moment from 'moment';
           () => {
                   this.setItems(this.itemProvider.getItemList());
                   console.log(this.items);
-                  this.hasItemList = true;
                 }
       );
   }
@@ -84,7 +84,6 @@ import * as moment from 'moment';
           () => {
                   this.setCategory(this.categoryProvider.getCategory());
                   console.log(this.category);
-                  this.loadingItemList();
                   this.isCategoryRead = true;
                 }
       );
