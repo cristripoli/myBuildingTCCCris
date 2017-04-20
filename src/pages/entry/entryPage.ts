@@ -29,9 +29,9 @@ import * as moment from 'moment';
   private stores: Array<Store>;
   private total: string;
   public isCategoryRead = false;
-  public hasItemList = false;
+  public hasItemList: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider,
               public entryProvider: EntryProvider, public categoryProvider: CategoryProvider, public storeProvider: StoreProvider) {
     this.entry = new Entry(null, "", new Date().toISOString(), null, null,null,1,0,null);
     console.log("EntryPage constructor");
@@ -48,20 +48,20 @@ import * as moment from 'moment';
       this.loadingItemList();
     }
 
-    this.loadingStoreList();  
+    this.loadingStoreList();
  }
 
  private fillCategoryParam(navParams: NavParams){
     this.category = new Category(null,"","","");
     this.category = navParams.get('category');
-    console.log("category: " + this.category);
+    console.log("category: " + this.category.getName());
     this.isCategoryRead = true;
   }
 
    private fillItemParam(navParams: NavParams){
     this.item = new Item(null,"","",null);
     this.item = navParams.get('item');
-    console.log("item: " + this.item);
+    console.log("item: " + this.item.getName());
     this.hasItemList = false;
   }
 
@@ -70,7 +70,7 @@ import * as moment from 'moment';
           data => this.itemProvider.fillItemList(data),
           err => console.log(err),
           () => {
-                  this.setItems(this.itemProvider.getItemList()); 
+                  this.setItems(this.itemProvider.getItemList());
                   console.log(this.items);
                   this.hasItemList = true;
                 }
@@ -78,11 +78,11 @@ import * as moment from 'moment';
   }
 
   private loadingCategory(){
-    this.categoryProvider.getCategoryById(this.item.getId()).subscribe(
+    this.categoryProvider.getCategoryById(this.item.getCategoryId()).subscribe(
           data => this.categoryProvider.fillCategory(data),
           err => console.log(err),
           () => {
-                  this.setCategory(this.categoryProvider.getCategory()); 
+                  this.setCategory(this.categoryProvider.getCategory());
                   console.log(this.category);
                   this.loadingItemList();
                   this.isCategoryRead = true;
@@ -95,7 +95,7 @@ import * as moment from 'moment';
         data => this.storeProvider.fillStoreList(data),
         err => console.log(err),
         () => {
-                this.setStores(this.storeProvider.getStoreList()); 
+                this.setStores(this.storeProvider.getStoreList());
                 console.log(this.stores);
               }
     );
