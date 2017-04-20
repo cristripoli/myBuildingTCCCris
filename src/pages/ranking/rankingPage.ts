@@ -14,7 +14,7 @@ import { ItemProvider } from '../../providers/itemProvider';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-ranking-page',
+  selector: 'page-ranking-page, date-pipe, decimal-pipe, currency-pipe',
   templateUrl: 'rankingPage.html',
 })
 

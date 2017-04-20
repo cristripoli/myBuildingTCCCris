@@ -91,9 +91,7 @@ export class EntryProvider {
     }
 
     private verify(changeResult){
-       console.log(changeResult);
-       ;
-
+       console.log(changeResult);   
     }
 
 }

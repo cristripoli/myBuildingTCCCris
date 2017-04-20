@@ -39,8 +39,8 @@ export class ReportsByMonthPage {
         err => console.log(err),
         () => {
                   let month = UtilService.getEnumString(MonthEnum, MonthEnum["MONTH_" + i]);
-                  let totalByMonth = this.calcService.sumTotalSpent(this.entries);
                   this.entries = this.entryProvider.getEntryList();
+                  let totalByMonth = this.calcService.sumTotalSpent(this.entries);
                   spentByMonth = new SpentByMonth(month, totalByMonth, this.calcService.calculatePercent(totalByMonth, this.estimatedValue));
                   this.spentByMonthList.push(spentByMonth);
                   console.log(this.spentByMonthList);

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Gastos por mês</ion-title>
+    <ion-title>Gastos por Mês</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,13 +22,11 @@
       <ion-icon name="basket" item-left></ion-icon>
 
       <div class="item-note">
-        {{spentByMonth.month}}: {{spentByMonth.percent}} %
+        {{spentByMonth.month}}: {{spentByMonth.percent | number:'.2'}} %
       </div>
       <div class="item-note" item-right>
         {{spentByMonth.totalSpent | currency:'BRL':true:'.2'}}
       </div>
-
-      <ion-icon name="add" item-right (click)="goToEntryPage(category)"></ion-icon>
 
     </ion-item>
   </ion-list>

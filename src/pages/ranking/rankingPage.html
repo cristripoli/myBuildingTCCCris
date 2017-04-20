@@ -26,7 +26,7 @@
     <ion-item *ngFor="let entry of rankingEntriesList">
 
       <div item-left>
-        {{entry.date}}
+        {{entry.date | date:"dd/MM/yyyy"}}
       </div>
       
       <div item-left>
@@ -34,7 +34,7 @@
       </div>
       
       <div class="item-note" item-right>
-        R$ {{entry.value}}
+        {{entry.value | currency:'BRL':true:'.2'}}
       </div>
     </ion-item>
   </ion-list>
