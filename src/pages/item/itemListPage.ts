@@ -39,7 +39,7 @@ export class ItemListPage {
                       data => this.itemProvider.fillItemList(data),
                       err => console.log(err),
                       () => {
-                              this.setItems(this.itemProvider.getItemList()); 
+                              this.setItems(this.itemProvider.getItemList());
                               console.log(this.items);
                             }
                   );
@@ -52,7 +52,7 @@ export class ItemListPage {
     // That's right, we're pushing to ourselves!
     this.navCtrl.push(EntryListPage, item);
   }
-  
+
   goToItemPage(){
     this.navCtrl.push(ItemPage, this.category);
   }
@@ -63,5 +63,10 @@ export class ItemListPage {
 
   public setItems(items: Array<Item>){
     this.items = items;
+  }
+
+  // update list after pop page
+  ionViewDidEnter(){
+    this.loadingItemList();
   }
 }

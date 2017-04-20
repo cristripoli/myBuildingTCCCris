@@ -45,7 +45,7 @@ export class ItemPage {
   }
 
   back(){
-    this.navCtrl.push(ItemListPage, this.category);
+    this.navCtrl.pop();
   }
 
   public getItem(): Item{
