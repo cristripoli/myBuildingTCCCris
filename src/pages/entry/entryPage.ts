@@ -62,6 +62,7 @@ import * as moment from 'moment';
    private fillItemParam(navParams: NavParams){
     this.item = new Item(null,"","",null);
     this.item = navParams.get('item');
+    this.entry.setIdItem(this.item.getId());
     console.log("item: " + this.item.getName());
     this.hasItemList = false;
   }
@@ -100,7 +101,7 @@ import * as moment from 'moment';
     );
   }
 
-  private saveEntry(entry: Entry){
+  private saveEntry(entry: Entry){    
     entry.setDate(moment(entry.getDate()).format('YYYY-MM-DD'));
     this.entryProvider.saveEntry(entry);
     this.back();
