@@ -38,7 +38,7 @@ export class EntryProvider {
             return this.http.get(this.apiEntriesByCategoryUrl + "/" + idCategory).map(res => res.json());
     }
 
-    listEntriesByMonth(month: number){
+   listEntriesByMonth(month: number){
         console.log("List entries by month into provider method");
          this.entryList = [];
             let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });

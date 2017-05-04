@@ -17,8 +17,11 @@
   <ion-card *ngIf="showDetailsFinacial">
     <ion-grid>
       <ion-row>
-        <ion-col col-2>
+        <ion-col>
           <ion-label><b ion-text color="primary">Estimado:</b> {{building.estimated_value | currency:'BRL':true:'.2'}}</ion-label>
+        </ion-col>
+        <ion-col >
+          <ion-label><b ion-text color="primary">Metragem:</b> {{building.metreage | number:'.2'}}²</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>

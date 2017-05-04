@@ -29,6 +29,11 @@
       </div>
     </ion-item>
   </ion-list>
+
+  <ion-chip>
+    <ion-icon name="swap" color="dark"></ion-icon>
+    <h4 ion-text color="primary" item-right>Total {{item.total | currency:'BRL':true:'.2'}}</h4>
+  </ion-chip>
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
   </div>

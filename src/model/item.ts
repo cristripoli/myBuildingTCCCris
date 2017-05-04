@@ -4,6 +4,7 @@ export class Item{
     private name: string;
     private description: string;
     private id_category: number;
+    private total: number = 0;
 
     constructor(id:number, name:string, description: string, category_id: number){
       this.id = id;
@@ -24,6 +25,9 @@ export class Item{
     public getCategoryId():number{
         return this.id_category;
     }
+    public getTotal():number{
+        return this.total;
+    }
     public setId(id: number){
         this.id = id;
     }
@@ -35,5 +39,8 @@ export class Item{
     }
     public setCategoryId(category_id: number){
         this.id_category = category_id;
+    }
+    public setTotal(total: number){
+        this.total = total;
     }
 }

@@ -36,8 +36,6 @@ export class HomePage {
   public valueMeterEstimated: number = 0;
   public valueMeterActual: number = 0;
 
-
-
  constructor(public navCtrl: NavController, public categoryProvider: CategoryProvider, public entryProvider: EntryProvider,
              public buildingProvider: BuildingProvider, public calcService: BuildingCalcService) {
     this.loadingBuilding();

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { ItemProvider } from '../../providers/itemProvider';
+import { EntryProvider } from '../../providers/entryProvider';
 import { Item } from '../../model/item';
+import { Entry } from '../../model/entry';
 import { Category } from '../../model/category';
 import { EntryListPage } from '../entry/entryListPage'
 import { ItemPage } from '../item/itemPage'
+import { BuildingCalcService } from '../../services/buildingCalcService';
 
 /*
   Generated class for the ItemPage page.
@@ -13,13 +16,15 @@ import { ItemPage } from '../item/itemPage'
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-item-page',
+  selector: 'page-item-page, currency-pipe, decimal-pipe',
   templateUrl: 'itemListPage.html'
 })
 export class ItemListPage {
   private items: Array<Item>;
+  private entries: Array<Entry>;
   private category: Category;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, public events: Events) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider, 
+              public events: Events, public calcService: BuildingCalcService, public entryProvider: EntryProvider) {
     console.log("ItemPage constructor");
 
     this.fillCategoryParam(navParams);
@@ -40,10 +45,41 @@ export class ItemListPage {
                       err => console.log(err),
                       () => {
                               this.setItems(this.itemProvider.getItemList()); 
+                              this.loadingEntriesByItem();
                               console.log(this.items);
                             }
                   );
   }
+
+  private loadingEntriesByItem() {
+    for(let item of this.items){
+      this.entryProvider.listEntriesByItem(item.getId()).subscribe(
+                      data => this.entryProvider.fillEntryList(data),
+                      err => console.log(err),
+                      () => {
+                              item.setTotal(0.0);
+                              this.setEntries(this.entryProvider.getEntryList()); 
+                              this.calcTotalByItem(item);
+                              console.log(this.entries);
+                            }
+            );
+      }  
+  }
+
+  private calcTotalByItem(item: Item) {
+    for(let entry of this.entries){
+      this.entryProvider.listEntriesByItem(item.getId()).subscribe(
+                      data => this.entryProvider.fillEntryList(data),
+                      err => console.log(err),
+                      () => {
+                              this.setEntries(this.entryProvider.getEntryList()); 
+                              item.setTotal(this.calcService.sumTotalSpent(this.entries));
+                              console.log(this.entries);
+                            }
+            );
+    }  
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemPagePage');
   }
@@ -63,5 +99,9 @@ export class ItemListPage {
 
   public setItems(items: Array<Item>){
     this.items = items;
+  }
+
+  public setEntries(entries: Array<Entry>){
+    this.entries = entries;
   }
 }
