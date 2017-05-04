@@ -101,7 +101,7 @@ import * as moment from 'moment';
     );
   }
 
-  private saveEntry(entry: Entry){    
+  private saveEntry(entry: Entry){
     entry.setDate(moment(entry.getDate()).format('YYYY-MM-DD'));
     this.entryProvider.saveEntry(entry);
     this.back();
@@ -156,4 +156,10 @@ import * as moment from 'moment';
   public setStores(stores: Array<Store>){
     this.stores = stores;
   }
+
+  // update list after pop page
+  ionViewDidEnter(){
+    this.loadingStoreList();
+  }
+  
 }

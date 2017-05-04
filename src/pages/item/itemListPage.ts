@@ -44,7 +44,7 @@ export class ItemListPage {
                       data => this.itemProvider.fillItemList(data),
                       err => console.log(err),
                       () => {
-                              this.setItems(this.itemProvider.getItemList()); 
+                              this.setItems(this.itemProvider.getItemList());
                               this.loadingEntriesByItem();
                               console.log(this.items);
                             }
@@ -53,7 +53,7 @@ export class ItemListPage {
 
   private loadingEntriesByItem() {
     for(let item of this.items){
-      this.entryProvider.listEntriesByItem(item.getId()).subscribe(
+      this.entryProvider.listEntriesByItem(item.getId()).subscribe(  // update list after pop page
                       data => this.entryProvider.fillEntryList(data),
                       err => console.log(err),
                       () => {
@@ -88,7 +88,7 @@ export class ItemListPage {
     // That's right, we're pushing to ourselves!
     this.navCtrl.push(EntryListPage, item);
   }
-  
+
   goToItemPage(){
     this.navCtrl.push(ItemPage, this.category);
   }
@@ -103,5 +103,9 @@ export class ItemListPage {
 
   public setEntries(entries: Array<Entry>){
     this.entries = entries;
+  }
+  // update list after pop page
+  ionViewDidEnter(){
+    this.loadingItemList();
   }
 }

@@ -30,7 +30,7 @@ export class StorePage {
       this.store = new Store(null,"",null);
       this.loadingStates();
   }
-  
+
   private loadingStates(){
       this.stateProvider.listStates().subscribe(
               data => this.stateProvider.fillStateList(data),
@@ -40,7 +40,7 @@ export class StorePage {
                     }
           );
   }
- 
+
   private loadingCities() {
     this.cityProvider.listCitiesByState(this.stateId).subscribe(
                        data => this.cityProvider.fillCityList(data),
@@ -63,7 +63,7 @@ export class StorePage {
   }
 
   back(){
-    this.navCtrl.push(EntryPage);
+    this.navCtrl.pop();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad StorePage');
