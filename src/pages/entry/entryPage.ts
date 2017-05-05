@@ -30,6 +30,7 @@ import * as moment from 'moment';
   private total: string;
   public isCategoryRead = false;
   public hasItemList: boolean = false;
+  public isUpdate: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public itemProvider: ItemProvider,
               public entryProvider: EntryProvider, public categoryProvider: CategoryProvider, public storeProvider: StoreProvider) {
@@ -39,6 +40,13 @@ import * as moment from 'moment';
 
     if(navParams.get('item') != null && navParams.get('item') != 'undefined'){
       this.fillItemParam(navParams);
+    }
+
+    if(navParams.get('entry') != null && navParams.get('entry') != 'undefined'){
+      this.fillEntryParam(navParams);
+      this.isUpdate = true;
+    }else{
+      this.isUpdate = false;
     }
 
     if(navParams.get('category') == null || navParams.get('category') == 'undefined'){
@@ -59,12 +67,18 @@ import * as moment from 'moment';
     this.hasItemList = true;
   }
 
-   private fillItemParam(navParams: NavParams){
+  private fillItemParam(navParams: NavParams){
     this.item = new Item(null,"","",null);
     this.item = navParams.get('item');
     this.entry.setIdItem(this.item.getId());
     console.log("item: " + this.item.getName());
     this.hasItemList = false;
+  }
+
+  private fillEntryParam(navParams: NavParams){
+    this.entry = navParams.get('entry');
+    this.entry.setIdItem(this.item.getId());
+    console.log("entry: " + this.item.getName());
   }
 
   private loadingItemList() {
@@ -103,7 +117,11 @@ import * as moment from 'moment';
 
   private saveEntry(entry: Entry){
     entry.setDate(moment(entry.getDate()).format('YYYY-MM-DD'));
-    this.entryProvider.saveEntry(entry);
+    if(this.isUpdate){
+      this.entryProvider.updateEntry(entry);
+    }else{
+      this.entryProvider.saveEntry(entry);
+    }
     this.back();
   }
 

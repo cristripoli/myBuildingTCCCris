@@ -22,6 +22,7 @@ export class EntryService {
 
     convertEntryToJson(entry: Entry){
       let entryJson = JSON.stringify({
+        "id": entry.getId(),
         "description": entry.getDescription(), 
         "date": entry.getDate(),
         "value": entry.getValue(),

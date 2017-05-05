@@ -52,8 +52,11 @@ import { EntryPage } from '../entry/entryPage';
   }
 
   goToEntryPage(){
-    //this.navCtrl.push(EntryPage, {"item": this.item});
     this.navCtrl.push(EntryPage, {"item": this.item});
+  }
+
+  updateEntry(event, entry){
+    this.navCtrl.push(EntryPage, {"item": this.item, "entry": entry});
   }
 
   back(){

@@ -79,6 +79,23 @@ export class EntryProvider {
         );          
     }
 
+    public updateEntry(entry: Entry){
+        let headers = new Headers({ 'Content-Type':'application/json' });
+        let entryJson = this.entryService.convertEntryToJson(entry);
+        console.log('json: ' + entryJson);
+        let options = new RequestOptions({ headers: headers });
+        this.http.put( this.apiEntryUrl + "/" + entry.getId() , entryJson, options).subscribe(
+                    data => this.verify(data),
+                    err => this.handleError(err)
+        );          
+    }
+
+    public deleteEntry(entry: Entry){
+        let headers = new Headers({ 'Content-Type':'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        this.http.delete( this.apiEntryUrl + "/" + entry.getId()).map(res => res.json());     
+    }
+
     getEntryList() : Array<Entry>{
         return this.entryList;
     }

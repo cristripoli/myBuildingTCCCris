@@ -22,18 +22,20 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let entry of entries">
+    <ion-item *ngFor="let entry of entries" (click)="updateEntry($event, entry)">
       {{entry.description}}
       <div class="item-note" item-right>
         {{entry.value | currency:'BRL':true:'.2'}}
       </div>
     </ion-item>
+    <ion-item>
+      <ion-chip item-right no-margin no-padding>
+        <ion-icon name="swap" color="dark" no-margin no-padding></ion-icon>
+        <ion-label><h1><b ion-text color="primary" >Total</b> {{item.total | currency:'BRL':true:'.2'}}</h1></ion-label>
+      </ion-chip>
+    </ion-item>
   </ion-list>
 
-  <ion-chip>
-    <ion-icon name="swap" color="dark"></ion-icon>
-    <h4 ion-text color="primary" item-right>Total {{item.total | currency:'BRL':true:'.2'}}</h4>
-  </ion-chip>
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
   </div>
