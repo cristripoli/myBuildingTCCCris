@@ -14,6 +14,7 @@ import { BuildingProvider } from '../providers/buildingProvider';
 import { StoreProvider } from '../providers/storeProvider';
 import { CityProvider } from '../providers/cityProvider';
 import { StateProvider } from '../providers/stateProvider';
+import { UserProvider } from '../providers/userProvider';
 import { CategoryService } from '../services/categoryService';
 import { BuildingService } from '../services/buildingService';
 import { EntryService } from '../services/entryService';
@@ -22,6 +23,7 @@ import { BuildingCalcService } from '../services/buildingCalcService';
 import { CityService } from '../services/cityService';
 import { StoreService } from '../services/storeService';
 import { StateService } from '../services/stateService';
+import { UserService } from '../services/userService';
 import { EntryPage } from '../pages/entry/entryPage';
 import { ItemPage } from '../pages/item/itemPage';
 import { ItemListPage } from '../pages/item/itemListPage';
@@ -81,12 +83,14 @@ import { RankingPage } from '../pages/ranking/rankingPage';
     ItemProvider,
     CityProvider,
     StateProvider,
+    UserProvider,
     StoreProvider,
     ItemService,
     BuildingProvider,
     BuildingService,
     BuildingCalcService,
     StoreService,
+    UserService,
     CityService,
     StateService
     ]

@@ -7,27 +7,99 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Gastos por Mês</ion-title>
+    <ion-title>Relatório de Gastos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngIf="isDataAvailable">
-    <ion-list-header>
-      Valores e Pocentagens Gastos Por Mês:
-    </ion-list-header>
-    <ion-item *ngFor="let spentByMonth of spentByMonthList">
 
-      <ion-icon name="basket" item-left></ion-icon>
+  <div padding>
+    <ion-segment [(ngModel)]="reports">
+      <ion-segment-button value="byMonth">
+        Gastos por Mês
+      </ion-segment-button>
+      <ion-segment-button value="ByStore">
+        Gastos por Loja
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-      <div class="item-note">
-        {{spentByMonth.month}}: {{spentByMonth.percent | number:'.2'}} %
-      </div>
-      <div class="item-note" item-right>
-        {{spentByMonth.totalSpent | currency:'BRL':true:'.2'}}
-      </div>
+  <div [ngSwitch]="reports">
+    <ion-list *ngSwitchCase="'byMonth'">
+      <ion-list *ngIf="isDataAvailable">
+        <ion-list-header>
+          Valores e Pocentagens dos Gastos Por Mês:
+        </ion-list-header>
+        <ion-item *ngFor="let spentByMonth of spentByMonthList">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item-divider color="light">
+                  <div class="item-note">
+                    <ion-icon name="basket" item-left></ion-icon>
+                    {{spentByMonth.month}}: {{spentByMonth.percent | number:'.2'}} %
+                  </div>
+                  <div class="item-note" item-right>
+                    {{spentByMonth.totalSpent | currency:'BRL':true:'.2'}}
+                  </div>
+                </ion-item-divider>
+              </ion-col>
+            </ion-row>
+            <ion-row align-items-center justify-content-center>
+              <ion-col align-self-center>
+                <div text-center>
+                <h3 text-center><b ion-text color="primary">Pago:</b> {{spentByMonth.totalPaid | currency:'BRL':true:'.2'}}</h3>
+                </div>
+              </ion-col>
+              <ion-col align-self-center>
+                <div text-center>
+                <h3 text-center><b ion-text color="primary">Não Pago:</b> {{spentByMonth.totalNotPaid| currency:'BRL':true:'.2'}}</h3> 
+                </div>               
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+    </ion-list>
 
-    </ion-item>
-  </ion-list>
+    <ion-list *ngSwitchCase="'ByStore'">
+      <ion-list *ngIf="isDataByStoreAvailable">
+        <ion-list-header>
+          Valores e Pocentagens dos Gastos Por Loja:
+        </ion-list-header>
+        <ion-item *ngFor="let spentByStore of spentByStoreList">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item-divider color="light">
+                  <div class="item-note">
+                    <ion-icon name="basket" item-left></ion-icon>
+                    {{spentByStore.month}}: {{spentByStore.percent | number:'.2'}} %
+                  </div>
+                  <div class="item-note" item-right>
+                    {{spentByStore.totalSpent | currency:'BRL':true:'.2'}}
+                  </div>
+                </ion-item-divider>
+              </ion-col>
+            </ion-row>
+            <ion-row align-items-center justify-content-center>
+              <ion-col align-self-center>
+                <div text-center>
+                <h3 text-center><b ion-text color="primary">Pago:</b> {{spentByStore.totalPaid | currency:'BRL':true:'.2'}}</h3>
+                </div>
+              </ion-col>
+              <ion-col align-self-center>
+                <div text-center>
+                <h3 text-center><b ion-text color="primary">Não Pago:</b> {{spentByStore.totalNotPaid| currency:'BRL':true:'.2'}}</h3> 
+                </div>               
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+      ...
+    </ion-list>
+  </div>
+
 </ion-content>

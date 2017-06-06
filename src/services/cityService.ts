@@ -19,6 +19,15 @@ export class CityService {
        return cityList
     }
 
+    convertDataToCity(data:any):City {
+
+       let city:City;
+       city = new City(data[0].id,data[0].name,data[0].state_id);
+       console.log("Object city get: " + city.getName());
+
+       return city
+    }
+
     public convertCityToJson(city: City){
       let cityJson = JSON.stringify({
         "name": city.getName(),

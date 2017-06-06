@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Ranking de Preço por Item</ion-title>
+    <ion-title>Ranking de Preço por Material</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -23,6 +23,14 @@
   </ion-item>
 
   <ion-list *ngIf="isDataAvailable">
+    <ion-item>
+      <ion-label>Cidade</ion-label>
+      <ion-select [(ngModel)]="cityId" name="city" (ionChange)="loadRakingByCity($event, itemId)" placeholder="{{city.name}}">
+        <ion-option *ngFor="let city of cities" [value]="city.id">
+          {{city.name}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
     <ion-item *ngFor="let entry of rankingEntriesList">
 
       <div item-left>

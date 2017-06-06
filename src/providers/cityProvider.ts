@@ -18,9 +18,11 @@ export class CityProvider {
   private apiCityUrl:string;
   private apiCityByStateUrl:string;
   private cityList:Array<City>;
+  private city:City;
 
   constructor(public http: Http, private cityService: CityService) {
     this.apiCityByStateUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.CITY_GET_CITIES_BY_STATE_URL);
+    this.apiCityUrl = UtilService.getEnumString(SettingsEnum, SettingsEnum.CITY_URL);
     console.log('Hello CityProvider Provider');
   }
 
@@ -40,10 +42,24 @@ export class CityProvider {
           return this.http.get(this.apiCityByStateUrl + "/" + stateId).map(res => res.json());
   }
 
+ public getCityById(cityId: number){
+      console.log("Get city by id into provider method");
+        this.cityList = [];
+          let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+          let options = new RequestOptions({ headers: headers });
+          return this.http.get(this.apiCityUrl + "/" + cityId).map(res => res.json());
+  }
+
   public fillCityList(data: any){
       console.log("data: " + data);
       this.cityList =  this.cityService.convertDataToCityList(data);
       console.log("cityList: " +  this.cityList);        
+  }
+
+  public fillCity(data: any){
+      console.log("data: " + data);
+      this.city =  this.cityService.convertDataToCity(data);
+      console.log("city: " +  this.city);        
   }
   
   public saveCity(city: City){
@@ -62,6 +78,12 @@ export class CityProvider {
   }
   setCityList(cityList: Array<City>){
       this.cityList = cityList;
+  }
+  getCity() : City{
+      return this.city;
+  }
+  setCity(city: City){
+      this.city = city;
   }
 
   private handleError (error: Response | any) {

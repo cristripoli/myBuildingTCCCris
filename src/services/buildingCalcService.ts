@@ -5,17 +5,29 @@ import { Entry } from '../model/entry';
 export class BuildingCalcService {
 
     public totalSpent: number = 0;
+    public totalSpentPaid: number = 0;
+    public totalSpentNotPaid: number = 0;
+
     constructor() {
     }
     
     public sumTotalSpent(entries: Array<Entry>) {
       let total = 0;
+      this.totalSpentPaid = 0;
+      this.totalSpentNotPaid=0;
+      
       for(let entry of entries){
-          total += entry.getValue();
+          entry.setTotal(entry.getValue() * entry.getQuantity());
+          total += entry.getTotal();
+          if(entry.isPaid()){
+            this.totalSpentPaid += entry.getTotal();
+          }else{
+            this.totalSpentNotPaid += entry.getTotal();
+          }
         }
 
       console.log("Total: " + total);
-      this.totalSpent += total;
+      this.totalSpent = total;
       return total;
     }
 
@@ -37,5 +49,20 @@ export class BuildingCalcService {
 
     public setTotalSpent(totalSpent: number){
       this.totalSpent = totalSpent;
+    }
+
+    public getTotalSpentPaid(){
+      return this.totalSpentPaid;
+    }
+
+    public setTotalSpentPaid(totalSpentPaid: number){
+      this.totalSpentPaid = totalSpentPaid;
+    }
+    public getTotalSpentNotPaid(){
+      return this.totalSpentNotPaid;
+    }
+
+    public setTotalSpentNotPaid(totalSpentNotPaid: number){
+      this.totalSpentNotPaid = totalSpentNotPaid;
     }
 }  

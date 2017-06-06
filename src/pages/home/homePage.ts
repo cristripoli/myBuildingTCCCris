@@ -13,7 +13,6 @@ import { ItemListPage } from '../item/itemListPage';
 import { ReportsByMonthPage } from '../reports/reportsByMonthPage';
 import { RankingPage } from '../ranking/rankingPage';
 
-
 @Component({
   selector: 'page-home, decimal-pipe, currency-pipe, percent-pipe',
   templateUrl: 'homePage.html'
@@ -137,7 +136,7 @@ export class HomePage {
   }
 
   goToRankingPage(event, category) {
-    this.navCtrl.push(RankingPage);
+    this.navCtrl.push(RankingPage, this.building);
   }
   
   public goToReports(){
